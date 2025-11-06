@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+:root {
+    /*** Variables ***/
+    /* Dark theme */
+    /* Background colors */
+    --background-color: 18, 18, 18;
+    --surface-color: rgba(255, 255, 255, 0.05);
+    --primary-color: 187, 134, 252;
+    --secondary-color: 3, 218, 197;
+    --secondary-variant-color: 1, 135, 134;
+    --error-color: 207, 102, 121;
+    /* Text colors (according to the background) */
+    --on-background-color: 255, 255, 255;
+    --on-surface-color: 255, 255, 255;
+    --on-primary-color: 0, 0, 0;
+    --on-secondary-color: 0, 0, 0;
+    --on-error-color: 0, 0, 0;
+    /* Alpha values */
+    --high-emphasis: 0.87;
+    --medium-emphasis: 0.60;
+    --disabled: 0.38;
+
+    --primary-background-color: #fcfbfa;
+    --primary-text: #153a43;
+    --primary-text-rgb: 21, 58, 67;
+    --secondary-text: rgba(21, 58, 67, 0.75);
+
+    --vermillion-light: #ff7c4d;
+    --vermillion-light-rgb: 255, 124, 77;
+}

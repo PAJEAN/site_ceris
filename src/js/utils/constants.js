@@ -19,7 +19,7 @@ export const DEBUG = process.env.NODE_ENV == 'production' ? false: debug;
 export const NAV_INFO = {
     navbar_brand: {content: 'Ceris', link: '#'},
     nav_items: [
-        {content: 'Projets', link: '#'},
+        {content: 'Projets', link: `#${PAGES_INFO[PAGES.PROJETS].route.path}`},
         {content: 'Publications', link: `#${PAGES_INFO[PAGES.PUBLICATIONS].route.path}`},
         {content: 'Équipe', link: '#'},
         {content: 'Enseignements', link: '#'},

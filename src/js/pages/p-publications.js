@@ -3,75 +3,135 @@
 /** NS **/
 import { PAGES } from 'JS/pages/__ns__';
 import { WC } from 'JS/components/__ns__';
+/** Components **/
+import { WcPagination } from 'JS/components/wc-pagination';
+import { WcPublications } from 'JS/components/wc-publications';
+/** Store **/
+import { HAL } from 'JS/store/modules/hal/s-hal';
+
+
+const TAG_IDS = {
+    main: 'p-main',
+    wc_pagination: 'wc-pagination',
+    wc_pagination_container: 'wc-pagination-container',
+    wc_publications_container: 'wc-publication-container',
+};
+
+const PAGE_NAME = PAGES.PUBLICATIONS;
+
+const TEMPLATE = document.createElement('template');
+TEMPLATE.innerHTML = /* html */`
+
+    <style>
+    </style>
+
+    <div id="${TAG_IDS.main}">
+        <${WC.NAV}></${WC.NAV}>
+        
+        <section class="pt-2 pb-5 padding-global">
+            <div class="container-fluid py-5">
+                <div class="row mb-5">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h2 class="display-5 section-title mb-3">Publications récentes</h2>
+                        <p class="lead text-muted">Nos contributions à la recherche scientifique en informatique</p>
+                    </div>
+                </div>
+                
+                <div id="${TAG_IDS.wc_publications_container}"></div>
+            </div>
+            <div id="${TAG_IDS.wc_pagination_container}">
+                <${WC.PAGINATION} id="${TAG_IDS.wc_pagination}" ${WcPagination.rows_attribute_name}="5"></${WC.PAGINATION}>
+            </div>
+        </section>
+    </div>
+`;
+
+class PPublication extends HTMLElement {    
+    constructor() {
+        super();
+        /** @type {HTMLDivElement} */
+        this._content = document.createElement('div');
+
+        /* Params to HAL request */
+        this._rows = 10;
+        this._start = 0;
+    }
+
+    _clear_pagination() {
+        let tag = this._content.querySelector(`#${TAG_IDS.wc_pagination_container}`);
+        tag.textContent = '';
+    }
+
+    _clear_publications() {
+        let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
+        tag.textContent = '';
+    }
+    
+    _observer(mutationsList) {
+        for(const mutation of mutationsList) { // List of detected mutations.
+            if (mutation.type === 'attributes') { // Check if it's an attribute modification.
+                if (mutation.attributeName == WcPagination.current_page_attribute_name) {
+                    this._start = mutation.target.current_page * this._rows;
+                    HAL.fetch(this._rows, this._start)
+                    .then(() => {                  
+                        this._publications();
+                    });
+                }
+            }
+        }
+    }
+
+    _observing() {
+        let wc_pagination = this._content.querySelector(`#${TAG_IDS.wc_pagination}`);
+        this.observer.disconnect();
+        this.observer.observe(wc_pagination, { attributes: true });
+    }
+
+    _pagination() {
+        this._clear_pagination();
+        let tag = this._content.querySelector(`#${TAG_IDS.wc_pagination_container}`);
+        let wc_pagination = document.createElement(`${WC.PAGINATION}`);
+        wc_pagination.id = TAG_IDS.wc_pagination;
+        wc_pagination.setAttribute(WcPublications.rows_attribute_name, this._rows.toString());
+        tag.appendChild(wc_pagination);
+    }
+
+    _publications() {
+        this._clear_publications();
+        let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
+        let wc_publications = document.createElement(`${WC.PUBLICATIONS}`);
+        wc_publications.setAttribute(WcPublications.rows_attribute_name, this._rows.toString());
+        tag.appendChild(wc_publications);
+    }
+
+    init() {
+        this._publications();
+        this._pagination();
+        this.observer && this._observing();
+    }
+    
+    connectedCallback () {
+        this.appendChild(TEMPLATE.content.cloneNode(true));
+
+        /** @type {HTMLDivElement} */
+        this._content = this.querySelector(`#${TAG_IDS.main}`) ?? this._content;
+
+        this.observer = new MutationObserver(this._observer.bind(this));
+
+        HAL.fetch(this._rows, this._start)
+        .then(() => {
+            this.init();
+        });
+    }
+    
+    disconnectedCallback () {
+        this.observer && this.observer.disconnect();
+    }
+}
 
 try {
-    const TAG_IDS = {
-        main:    'p-main'
-    };
-
     (function() {
-        const PAGE_NAME = PAGES.PUBLICATIONS;
-
-        const TEMPLATE = document.createElement('template');
-        TEMPLATE.innerHTML = /* html */`
-
-            <style>
-                .publication-item {
-                    border-left: 3px solid var(--primary-text);
-                }
-
-                .publication-item:hover {
-                    border-left-color: var(--vermillion-light);
-                }
-            </style>
-
-            <div id="${TAG_IDS.main}">
-                <${WC.NAV}></${WC.NAV}>
-                
-                <section class="pt-2 pb-5 padding-global">
-                    <div class="container-fluid py-5">
-                        <div class="row mb-5">
-                            <div class="col-lg-8 mx-auto text-center">
-                                <h2 class="display-5 section-title mb-3">Publications récentes</h2>
-                                <p class="lead text-muted">Nos contributions à la recherche scientifique en informatique</p>
-                            </div>
-                        </div>
-                        
-                        <${WC.PUBLICATIONS} data-rows="3" class="section-color"></${WC.PUBLICATIONS}>
-                    </div>
-                </section>
-            </div>
-        `;
-
-        window.customElements.define(PAGE_NAME, class extends HTMLElement {
-            constructor() {
-                super();
-                /** @type {HTMLDivElement} */
-                this._content = document.createElement('div');
-
-                /* Params to HAL request */
-                this._rows = 5;
-                this._start = 0;
-            }
-
-            
-
-            init() {}
-         
-            connectedCallback () {
-                this.appendChild(TEMPLATE.content.cloneNode(true));
-
-                /** @type {HTMLDivElement} */
-                this._content = this.querySelector(`#${TAG_IDS.main}`) ?? this._content;
-
-                this._rows = this.hasAttribute('data-rows') ? parseInt(this.getAttribute('data-rows') ?? this._rows.toString()): this._rows;
-                this._start = this.hasAttribute('data-start') ? parseInt(this.getAttribute('data-start') ?? this._start.toString()): this._start;
-
-                this.init();
-            }
-          
-            disconnectedCallback () {}
-        });
+        window.customElements.define(PAGE_NAME, PPublication);
     })();
 }
 catch (err) {

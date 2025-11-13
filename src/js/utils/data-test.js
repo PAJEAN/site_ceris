@@ -1,6 +1,6 @@
 export const DATA_TEST = {
   "response":{
-    "numFound":477,
+    "numFound":10,
     "start":0,
     "numFoundExact":true,
     "docs":[{

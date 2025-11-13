@@ -2,7 +2,8 @@
 
 export const PAGES = {
     HOME: 'p-home',
-    PUBLICATIONS: 'p-publications'
+    PUBLICATIONS: 'p-publications',
+    PROJETS: 'p-projets'
 }
 
 export const PAGES_INFO = {
@@ -17,6 +18,12 @@ export const PAGES_INFO = {
         route: {
             path: '/publications',
             title: 'Publications'
+        }
+    },
+    [PAGES.PROJETS]: {
+        route: {
+            path: '/projets',
+            title: 'Projets'
         }
     }
 }

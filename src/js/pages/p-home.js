@@ -1,10 +1,15 @@
 /** NS **/
 import { PAGES, PAGES_INFO } from 'JS/pages/__ns__';
 import { WC } from 'JS/components/__ns__';
+/** Store **/
+import { HAL } from 'JS/store/modules/hal/s-hal';
+/** Component **/
+import { WcPublications } from 'JS/components/wc-publications';
 
 (function () {
     const TAG_IDS = {
-        main:           'p-main',
+        main: 'p-main',
+        wc_publications_container: 'wc-publication-container',
     };
 
     const PAGE_NAME = PAGES.HOME;
@@ -164,6 +169,28 @@ import { WC } from 'JS/components/__ns__';
                 </div>
             </section>
 
+            <!-- Projects Section -->
+            <section id="projets" class="pt-2 pb-5 section-color padding-global">
+                <div class="container-fluid py-5">
+                    <div class="row mb-5">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="display-5 section-title mb-3">Projets de recherche</h2>
+                            <p class="lead text-muted">Nos initiatives actuelles pour repousser les frontières de l'informatique</p>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        
+                        <div class="text-center mt-5">
+                            <a href="#${PAGES_INFO[PAGES.PROJETS].route.path}" class="btn btn-gradient">
+                                Voir tous les projets
+                                <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Publications Section -->
             <section class="pt-2 pb-5 section-color padding-global">
                 <div class="container-fluid py-5">
@@ -174,7 +201,9 @@ import { WC } from 'JS/components/__ns__';
                         </div>
                     </div>
                     
-                    <${WC.PUBLICATIONS} data-rows="3" class="section-color"></${WC.PUBLICATIONS}>
+                    <div id="${TAG_IDS.wc_publications_container}">
+                        <${WC.PUBLICATIONS} data-rows="5" class="section-color"></${WC.PUBLICATIONS}>
+                    </div>
                     
                     <div class="text-center mt-5">
                         <a href="#${PAGES_INFO[PAGES.PUBLICATIONS].route.path}" class="btn btn-gradient">
@@ -193,10 +222,34 @@ import { WC } from 'JS/components/__ns__';
         constructor() {
             super();
         }
+
+        _clear_publications() {
+            let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
+            tag.textContent = '';
+        }
+
+        _publications() {
+            this._clear_publications();
+            let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
+            let wc_publications = document.createElement(`${WC.PUBLICATIONS}`);
+            wc_publications.setAttribute(WcPublications.rows_attribute_name, (5).toString());
+            tag.appendChild(wc_publications);
+        }
+
+        init() {
+            HAL.fetch(5, 0)
+            .then(() => {
+                console.log(HAL.publications);
+                
+                this._publications();
+            });
+        }
         
         connectedCallback () {
             this.appendChild(TEMPLATE.content.cloneNode(true));
             this._content = this.querySelector(`#${TAG_IDS.main}`);
+
+            this.init();
         }
         
         disconnectedCallback () {}

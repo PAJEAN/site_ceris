@@ -28,28 +28,30 @@ export const module = {
             return new Promise((resolve, reject) => {
 
                 if (DEBUG) {
-                    let resultat = DATA_TEST;
-                    // @ts-ignore
-                    let publications = resultat.response.docs.map(el => new Publication(el));                    
-                    publications = publications.slice(0, payload);
-                    context.commit(`${NS}_UPDATE_PUBLICATIONS`, publications);
-                    context.commit(`${NS}_UPDATE_TOTAL_PUBLICATIONS`, resultat.response.numFound);
-                    return resolve();
-                }                
+                    return setTimeout(() => {
+                        let resultat = DATA_TEST;
+                        // @ts-ignore
+                        let publications = resultat.response.docs.map(el => new Publication(el));
+                        publications = publications.slice(payload.start, payload.start + payload.rows);
+                        context.commit(`${NS}_UPDATE_PUBLICATIONS`, publications);
+                        context.commit(`${NS}_UPDATE_TOTAL_PUBLICATIONS`, resultat.response.numFound);
+                        resolve();
+                    }, 250);
+                }
 
-                fetch(`https://api.archives-ouvertes.fr/search/?q=structId_i:1100796&&fl=title_s,authFullName_s,keyword_s,abstract_s,producedDateY_i,publisher_s,conferenceTitle_s,degree_s,book_s,uri_s,journalTitle_s&sort=producedDateY_i%20desc,docid%20desc&rows=${payload}`, {
+                fetch(`https://api.archives-ouvertes.fr/search/?q=structId_i:1100796&&fl=title_s,authFullName_s,keyword_s,abstract_s,producedDateY_i,publisher_s,conferenceTitle_s,degree_s,book_s,uri_s,journalTitle_s&sort=producedDateY_i%20desc,docid%20desc&rows=${payload.rows}&start=${payload.start}`, {
                     method: 'GET'
                 })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`HTTP error, status = ${response.status}`);                        
+                        throw new Error(`HTTP error, status = ${response.status}`);
                     }
-                    return response.json();                    
+                    return response.json();
                 })
                 .then(json => {
-                    let publications = json.docs.map(el => new Publication(el));
-                    context.commit(`${NS}_UPDATE_PUBLICATIONS`, publications);
-                    context.commit(`${NS}_UPDATE_TOTAL_PUBLICATIONS`, json.numFound);
+                    let publications = json.response.docs.map(el => new Publication(el));
+                    context.commit(`${NS}_UPDATE_PUBLICATIONS`, publications);                    
+                    context.commit(`${NS}_UPDATE_TOTAL_PUBLICATIONS`, parseInt(json.response.numFound));
                     resolve();
                 })
                 .catch(error => {
@@ -84,11 +86,12 @@ class Hal {
     get total_publications() { return store.state[keys.s_total_publications]; }
 
     /**
-     * @param {number} rows 
+     * @param {number} rows
+     * * @param {number} start
      * @returns Promise
      */
-    async fetch(rows) {        
-        return store.dispatch(keys.a_fetch_publications, rows);
+    async fetch(rows, start) {        
+        return store.dispatch(keys.a_fetch_publications, {rows, start});
     }
 }
 

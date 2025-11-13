@@ -3,11 +3,13 @@ import './js/lib/router';
 
 /*** Components ***/
 import './js/components/wc-nav';
+import './js/components/wc-pagination';
 import './js/components/wc-publications';
 import './js/components/wc-stats';
 
 /*** Pages ***/
 import './js/pages/p-home';
+import './js/pages/p-projets';
 import './js/pages/p-publications';
 
 /*** CSS ***/

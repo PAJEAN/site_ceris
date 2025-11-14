@@ -59,6 +59,11 @@ body {
 8888888P"  "Y888888  88888P'  "Y8888  
 */
 
+.base-card {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
 .base-radius-16 {
     border-radius: 16px;
 }
@@ -115,21 +120,8 @@ margin-bottom: 1rem;
 
 
 
-.card-config {
-overflow: hidden;
-border-radius: 16px;
-}
 
 
-
-.project-img {
-height: 240px;
-object-fit: cover;
-transition: transform 0.3s ease;
-}
-.project-card:hover .project-img {
-transform: scale(1.05);
-}
 
 
 .team-img {
@@ -158,7 +150,8 @@ justify-content: center;
 transition: all 0.3s ease;
 }
 .social-icon:hover {
-background: #667eea;
+background: var(--vermillion-light);
+color: white;
 transform: translateY(-3px);
 }
 

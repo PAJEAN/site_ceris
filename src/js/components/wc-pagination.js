@@ -191,10 +191,7 @@ export class WcPagination extends HTMLElement {
 
         this._rows = this.hasAttribute(WcPagination.rows_attribute_name) ? parseInt(this.getAttribute(WcPagination.rows_attribute_name) ?? this._rows.toString()): this._rows;
 
-        this._nb_pages = Math.ceil(HAL.total_publications / this._rows);
-
-        console.log(this._nb_pages);
-        
+        this._nb_pages = Math.ceil(HAL.total_publications / this._rows);        
 
         this.init();
     }

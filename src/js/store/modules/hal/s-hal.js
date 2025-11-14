@@ -6,7 +6,7 @@ import { HAL as NS } from 'JS/store/modules/__ns__';
 import { Publication } from 'JS/store/modules/hal/publication';
 /** Utils **/
 import { DEBUG } from 'JS/utils/constants';
-import { DATA_TEST } from 'JS/utils/data-test';
+import { DATA_TEST } from 'JS/data/hal-data-test';
 
 export const keys = {
     /* ------------------------------- States ------------------------------- */
@@ -50,7 +50,7 @@ export const module = {
                 })
                 .then(json => {
                     let publications = json.response.docs.map(el => new Publication(el));
-                    context.commit(`${NS}_UPDATE_PUBLICATIONS`, publications);                    
+                    context.commit(`${NS}_UPDATE_PUBLICATIONS`, publications);
                     context.commit(`${NS}_UPDATE_TOTAL_PUBLICATIONS`, parseInt(json.response.numFound));
                     resolve();
                 })

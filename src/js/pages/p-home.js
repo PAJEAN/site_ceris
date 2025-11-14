@@ -5,11 +5,19 @@ import { WC } from 'JS/components/__ns__';
 import { HAL } from 'JS/store/modules/hal/s-hal';
 /** Component **/
 import { WcPublications } from 'JS/components/wc-publications';
+import { WcNav } from 'JS/components/wc-nav';
+import { WcProjets } from 'JS/components/wc-projets';
+/** Utils **/
 
 (function () {
     const TAG_IDS = {
         main: 'p-main',
         wc_publications_container: 'wc-publication-container',
+        wc_nav: 'wc-nav',
+        section_projets: PAGES_INFO[PAGES.PROJETS].route.path.substring(1),
+        project_container: 'project-container',
+        section_publications: PAGES_INFO[PAGES.PUBLICATIONS].route.path.substring(1),
+        section_team: PAGES_INFO[PAGES.TEAM].route.path.substring(1),
     };
 
     const PAGE_NAME = PAGES.HOME;
@@ -85,16 +93,18 @@ import { WcPublications } from 'JS/components/wc-publications';
                 color: white;
                 padding: 0.75rem 2rem;
                 font-weight: 500;
-                transition: all 0.3s ease;
+                transition: all 0.25s ease;
             }
 
             .btn-gradient:hover {
                 background-color: var(--vermillion-light);
+                color: white;
+                transform: translateY(-3px);
             }
         </style>
 
         <div id="${TAG_IDS.main}">
-            <${WC.NAV}></${WC.NAV}>
+            <${WC.NAV} id="${TAG_IDS.wc_nav}"></${WC.NAV}>
 
             <header class="padding-global">
                 <!-- Hero Section -->
@@ -170,7 +180,7 @@ import { WcPublications } from 'JS/components/wc-publications';
             </section>
 
             <!-- Projects Section -->
-            <section id="projets" class="pt-2 pb-5 section-color padding-global">
+            <section id="${TAG_IDS.section_projets}" class="pt-2 pb-5 section-color padding-global">
                 <div class="container-fluid py-5">
                     <div class="row mb-5">
                         <div class="col-lg-8 mx-auto text-center">
@@ -179,7 +189,10 @@ import { WcPublications } from 'JS/components/wc-publications';
                         </div>
                     </div>
 
-                    <div class="row g-4">
+                    <div>
+                        <div id="${TAG_IDS.project_container}" class="row g-4">
+                            <${WC.PROJETS} ${WcProjets.limit_attribute_name}="6"></${WC.PROJETS}>
+                        </div>
                         
                         <div class="text-center mt-5">
                             <a href="#${PAGES_INFO[PAGES.PROJETS].route.path}" class="btn btn-gradient">
@@ -192,7 +205,7 @@ import { WcPublications } from 'JS/components/wc-publications';
             </section>
 
             <!-- Publications Section -->
-            <section class="pt-2 pb-5 section-color padding-global">
+            <section id="${TAG_IDS.section_publications}" class="pt-2 pb-5 padding-global">
                 <div class="container-fluid py-5">
                     <div class="row mb-5">
                         <div class="col-lg-8 mx-auto text-center">
@@ -213,6 +226,192 @@ import { WcPublications } from 'JS/components/wc-publications';
                     </div>
                 </div>
             </section>
+
+            <!-- Team Section -->
+            <section id="${TAG_IDS.section_team}" class="pt-2 pb-5 padding-global section-color">
+                <div class="container pt-5">
+
+                    <div class="row mb-5">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="display-5 section-title mb-3">Notre équipe</h2>
+                            <p class="lead text-muted">Des experts passionnés dédiés à faire avancer la recherche en informatique</p>
+                        </div>
+                    </div>
+
+                    <!-- Researchers -->
+                    <div class="mb-5">
+                        <h4 class="text-uppercase text-muted small fw-semibold mb-4">Chercheurs</h4>
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
+                                        <h5 class="fw-semibold mb-1">Dr. Marc Durand</h5>
+                                        <p class="text-primary small mb-2">Directeur de recherche</p>
+                                        <p class="small text-muted mb-3">Intelligence artificielle, Apprentissage automatique</p>
+                                        <div class="d-flex gap-2">
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
+                                        <h5 class="fw-semibold mb-1">Dr. Sophie Martin</h5>
+                                        <p class="text-primary small mb-2">Chercheuse principale</p>
+                                        <p class="small text-muted mb-3">Cybersécurité, Cryptographie</p>
+                                        <div class="d-flex gap-2">
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
+                                        <h5 class="fw-semibold mb-1">Dr. Thomas Bernard</h5>
+                                        <p class="text-primary small mb-2">Chercheur senior</p>
+                                        <p class="small text-muted mb-3">Systèmes distribués, Cloud computing</p>
+                                        <div class="d-flex gap-2">
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
+                                        <h5 class="fw-semibold mb-1">Dr. Claire Dubois</h5>
+                                        <p class="text-primary small mb-2">Chercheuse</p>
+                                        <p class="small text-muted mb-3">Vision par ordinateur, Traitement d'images</p>
+                                        <div class="d-flex gap-2">
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
+                                        <h5 class="fw-semibold mb-1">Dr. Alexandre Petit</h5>
+                                        <p class="text-primary small mb-2">Chercheur</p>
+                                        <p class="small text-muted mb-3">Bases de données, Big Data</p>
+                                        <div class="d-flex gap-2">
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
+                                        <h5 class="fw-semibold mb-1">Dr. Julien Moreau</h5>
+                                        <p class="text-primary small mb-2">Chercheur</p>
+                                        <p class="small text-muted mb-3">Réseaux neuronaux, Deep Learning</p>
+                                        <div class="d-flex gap-2">
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                            <a href="#" class="social-icon">
+                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Staff -->
+                    <div>
+                        <h4 class="text-uppercase text-muted small fw-semibold mb-4">Personnel administratif et technique</h4>
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="feature-icon mx-auto mb-3" style="width: 50px; height: 50px;">
+                                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
+                                        </div>
+                                        <h6 class="fw-semibold mb-1">Marie Leblanc</h6>
+                                        <p class="small text-muted mb-0">Responsable administrative</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="feature-icon mx-auto mb-3" style="width: 50px; height: 50px;">
+                                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
+                                        </div>
+                                        <h6 class="fw-semibold mb-1">Pierre Rousseau</h6>
+                                        <p class="small text-muted mb-0">Ingénieur système</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="feature-icon mx-auto mb-3" style="width: 50px; height: 50px;">
+                                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
+                                        </div>
+                                        <h6 class="fw-semibold mb-1">Isabelle Vincent</h6>
+                                        <p class="small text-muted mb-0">Gestionnaire de projets</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="card card-config h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="feature-icon mx-auto mb-3" style="width: 50px; height: 50px;">
+                                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
+                                        </div>
+                                        <h6 class="fw-semibold mb-1">Laurent Simon</h6>
+                                        <p class="small text-muted mb-0">Technicien réseau</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center my-5">
+                        <a href="#${PAGES_INFO[PAGES.PUBLICATIONS].route.path}" class="btn btn-gradient">
+                            Découvrir toute l'équipe
+                            <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
+                        </a>
+                    </div>
+            </section>
             
         </div>
 
@@ -228,6 +427,24 @@ import { WcPublications } from 'JS/components/wc-publications';
             tag.textContent = '';
         }
 
+        _observer(mutationsList) {
+            for(const mutation of mutationsList) { // List of detected mutations.
+                if (mutation.type === 'attributes') { // Check if it's an attribute modification.
+                    if (mutation.attributeName == WcNav.location_attribute_name) {                        
+                        window.scrollTo({
+                            top: this._content.querySelector(`#${mutation.target.getAttribute(WcNav.location_attribute_name)}`).offsetTop,
+                            behavior: "smooth"
+                        });
+                    }
+                }
+            }
+        }
+
+        _observing() {
+            let wc_nav = this._content.querySelector(`#${TAG_IDS.wc_nav}`);
+            this.observer.observe(wc_nav, { attributes: true });
+        }
+
         _publications() {
             this._clear_publications();
             let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
@@ -238,21 +455,24 @@ import { WcPublications } from 'JS/components/wc-publications';
 
         init() {
             HAL.fetch(5, 0)
-            .then(() => {
-                console.log(HAL.publications);
-                
+            .then(() => {                
                 this._publications();
             });
+            this.observer && this._observing();
         }
         
         connectedCallback () {
             this.appendChild(TEMPLATE.content.cloneNode(true));
             this._content = this.querySelector(`#${TAG_IDS.main}`);
 
+            this.observer = new MutationObserver(this._observer.bind(this));
+
             this.init();
         }
         
-        disconnectedCallback () {}
+        disconnectedCallback () {
+            this.observer && this.observer.disconnect();
+        }
     });
 })();
 

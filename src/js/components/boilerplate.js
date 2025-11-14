@@ -1,15 +1,19 @@
 /* Components */
-import { COMPONENT_NAMES } from './__ns__';
+import { WC } from './__ns__';
 
 (function() {
-    const COMPONENT_NAME = 'wc-boilerplate';
+    const TAG_IDS = {
+        wc_main:    'wc-main'
+    };
+
+    const COMPONENT_NAME = '';
 
     const TEMPLATE = document.createElement('template');
     TEMPLATE.innerHTML = /* html */`
 
         <style></style>
 
-        <div id="main"></div>
+        <div id="${TAG_IDS.wc_main}"></div>
 
     `;
 
@@ -21,7 +25,7 @@ import { COMPONENT_NAMES } from './__ns__';
 
         connectedCallback() {
             this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
-            this.content = this.shadowRoot.querySelector('#main');
+            this.content = this.shadowRoot.querySelector(`#${TAG_IDS.wc_main}`);
         }
 
         disconnectedCallback() {}

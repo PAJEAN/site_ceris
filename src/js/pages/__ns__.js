@@ -5,6 +5,7 @@ export const PAGES = {
     PUBLICATIONS: 'p-publications',
     PROJETS: 'p-projets',
     TEAM: 'p-team',
+    TEACHING: 'p-teaching',
 }
 
 export const PAGES_INFO = {
@@ -32,6 +33,12 @@ export const PAGES_INFO = {
             path: '/equipe',
             title: 'Equipe'
         }
+    },
+    [PAGES.TEACHING]: {
+        route: {
+            path: '/enseignements',
+            title: 'Enseignements'
+        }
     }
 }
 
@@ -53,6 +60,6 @@ export const NAV_INFO = {
         {content: 'Projets', link: `#${PAGES_INFO[PAGES.PROJETS].route.path}`},
         {content: 'Publications', link: `#${PAGES_INFO[PAGES.PUBLICATIONS].route.path}`},
         {content: 'Équipe', link: `#${PAGES_INFO[PAGES.TEAM].route.path}`},
-        {content: 'Enseignements', link: '#'},
+        {content: 'Enseignements', link: `#${PAGES_INFO[PAGES.TEACHING].route.path}`},
     ],
 }

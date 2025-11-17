@@ -34,10 +34,6 @@ TEMPLATE.innerHTML = /* html */`
             max-height: 80vh;
             overflow-y: auto;
         }
-
-        .card {
-            cursor: pointer;
-        }
         
         @media (max-width: 992px) {
             .modal-image {

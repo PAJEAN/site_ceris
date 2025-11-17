@@ -25,11 +25,15 @@ TEMPLATE.innerHTML = /* html */`
         .project-img {
             height: 220px;
             object-fit: cover;
+            cursor: pointer;
             transition: transform 0.3s ease;
         }
-
-        .project-card:hover .project-img {
-            transform: scale(1.05);
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
     </style>
 

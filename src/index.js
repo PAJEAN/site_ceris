@@ -8,7 +8,9 @@ import './js/components/wc-projets';
 import './js/components/wc-projet-card';
 import './js/components/wc-publications';
 import './js/components/wc-stats';
+import './js/components/wc-teaching-card';
 import './js/components/wc-team';
+import './js/components/wc-team-card';
 
 /*** Pages ***/
 import './js/pages/p-home';

@@ -7,6 +7,8 @@ import { HAL } from 'JS/store/modules/hal/s-hal';
 import { WcPublications } from 'JS/components/wc-publications';
 import { WcNav } from 'JS/components/wc-nav';
 import { WcProjets } from 'JS/components/wc-projets';
+import { WcTeam } from 'JS/components/wc-team';
+import { WcTeaching } from 'JS/components/wc-teaching';
 /** Utils **/
 
 (function () {
@@ -18,6 +20,7 @@ import { WcProjets } from 'JS/components/wc-projets';
         project_container: 'project-container',
         section_publications: PAGES_INFO[PAGES.PUBLICATIONS].route.path.substring(1),
         section_team: PAGES_INFO[PAGES.TEAM].route.path.substring(1),
+        section_teaching: PAGES_INFO[PAGES.TEACHING].route.path.substring(1),
     };
 
     const PAGE_NAME = PAGES.HOME;
@@ -194,7 +197,7 @@ import { WcProjets } from 'JS/components/wc-projets';
                             <${WC.PROJETS} ${WcProjets.limit_attribute_name}="6"></${WC.PROJETS}>
                         </div>
                         
-                        <div class="text-center mt-5">
+                        <div class="text-center mt-5 pt-3">
                             <a href="#${PAGES_INFO[PAGES.PROJETS].route.path}" class="btn btn-gradient">
                                 Voir tous les projets
                                 <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
@@ -218,7 +221,7 @@ import { WcProjets } from 'JS/components/wc-projets';
                         <${WC.PUBLICATIONS} data-rows="5" class="section-color"></${WC.PUBLICATIONS}>
                     </div>
                     
-                    <div class="text-center mt-5">
+                    <div class="text-center mt-5 pt-3">
                         <a href="#${PAGES_INFO[PAGES.PUBLICATIONS].route.path}" class="btn btn-gradient">
                             Voir toutes les publications
                             <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
@@ -240,178 +243,70 @@ import { WcProjets } from 'JS/components/wc-projets';
 
                     <!-- Researchers -->
                     <div class="mb-5">
-                        <h4 class="text-uppercase text-muted small fw-semibold mb-4">Chercheurs</h4>
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
-                                        <h5 class="fw-semibold mb-1">Dr. Marc Durand</h5>
-                                        <p class="text-primary small mb-2">Directeur de recherche</p>
-                                        <p class="small text-muted mb-3">Intelligence artificielle, Apprentissage automatique</p>
-                                        <div class="d-flex gap-2">
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
-                                        <h5 class="fw-semibold mb-1">Dr. Sophie Martin</h5>
-                                        <p class="text-primary small mb-2">Chercheuse principale</p>
-                                        <p class="small text-muted mb-3">Cybersécurité, Cryptographie</p>
-                                        <div class="d-flex gap-2">
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
-                                        <h5 class="fw-semibold mb-1">Dr. Thomas Bernard</h5>
-                                        <p class="text-primary small mb-2">Chercheur senior</p>
-                                        <p class="small text-muted mb-3">Systèmes distribués, Cloud computing</p>
-                                        <div class="d-flex gap-2">
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
-                                        <h5 class="fw-semibold mb-1">Dr. Claire Dubois</h5>
-                                        <p class="text-primary small mb-2">Chercheuse</p>
-                                        <p class="small text-muted mb-3">Vision par ordinateur, Traitement d'images</p>
-                                        <div class="d-flex gap-2">
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
-                                        <h5 class="fw-semibold mb-1">Dr. Alexandre Petit</h5>
-                                        <p class="text-primary small mb-2">Chercheur</p>
-                                        <p class="small text-muted mb-3">Bases de données, Big Data</p>
-                                        <div class="d-flex gap-2">
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
-                                        <h5 class="fw-semibold mb-1">Dr. Julien Moreau</h5>
-                                        <p class="text-primary small mb-2">Chercheur</p>
-                                        <p class="small text-muted mb-3">Réseaux neuronaux, Deep Learning</p>
-                                        <div class="d-flex gap-2">
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                            <a href="#" class="social-icon">
-                                                <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <${WC.TEAM} ${WcTeam.limit_attribute_name}="6"></${WC.TEAM}>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5 pt-3">
+                    <a href="#${PAGES_INFO[PAGES.TEAM].route.path}" class="btn btn-gradient">
+                        Découvrir toute l'équipe
+                        <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Teaching Programs Section -->
+            <section id="${TAG_IDS.section_teaching}" class="py-5">
+                <div class="container py-5">
+                    <div class="row mb-5">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="display-5 section-title mb-3">Filières d'enseignement</h2>
+                            <p class="lead text-muted">Nos programmes de formation soutenus par le laboratoire</p>
                         </div>
                     </div>
+                    
+                    <${WC.TEACHING} ${WcTeaching.limit_attribute_name}="1"></${WC.TEACHING}>
+                </div>
 
-                    <!-- Staff -->
-                    <div>
-                        <h4 class="text-uppercase text-muted small fw-semibold mb-4">Personnel administratif et technique</h4>
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body text-center">
-                                        <div class="feature-icon mx-auto mb-3" style="width: 50px; height: 50px;">
-                                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
-                                        </div>
-                                        <h6 class="fw-semibold mb-1">Marie Leblanc</h6>
-                                        <p class="small text-muted mb-0">Responsable administrative</p>
-                                    </div>
-                                </div>
+                <!-- <div class="text-center pt-3">
+                    <a href="#${PAGES_INFO[PAGES.TEACHING].route.path}" class="btn btn-gradient">
+                        Découvrir toutes les formations
+                        <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
+                    </a>
+                </div> -->
+            </section>
+
+            <!-- Footer -->
+            <footer class="py-5">
+                <div class="container px-5 py-2">
+                    <div class="row g-4 ">
+                        <div class="col-lg-6">
+                            <div class="d-flex align-items-center">
+                                <span class="fw-semibold text-white text-center">Ceris</span>
                             </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body text-center">
-                                        <div class="feature-icon mx-auto mb-3" style="width: 50px; height: 50px;">
-                                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
-                                        </div>
-                                        <h6 class="fw-semibold mb-1">Pierre Rousseau</h6>
-                                        <p class="small text-muted mb-0">Ingénieur système</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body text-center">
-                                        <div class="feature-icon mx-auto mb-3" style="width: 50px; height: 50px;">
-                                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
-                                        </div>
-                                        <h6 class="fw-semibold mb-1">Isabelle Vincent</h6>
-                                        <p class="small text-muted mb-0">Gestionnaire de projets</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="card card-config h-100 border-0 shadow-sm">
-                                    <div class="card-body text-center">
-                                        <div class="feature-icon mx-auto mb-3" style="width: 50px; height: 50px;">
-                                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
-                                        </div>
-                                        <h6 class="fw-semibold mb-1">Laurent Simon</h6>
-                                        <p class="small text-muted mb-0">Technicien réseau</p>
-                                    </div>
-                                </div>
+                            <p class="small">Excellence en recherche et innovation technologique</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 text-end">
+                            <h6 class="text-white fw-semibold">Suivez-nous</h6>
+                            <div class="d-flex justify-content-end gap-2 m-auto">
+                                <a href="#" class="social-icon text-white">
+                                    <i data-lucide="twitter" style="width: 18px; height: 18px;"></i>
+                                </a>
+                                <a href="#" class="social-icon text-white">
+                                    <i data-lucide="linkedin" style="width: 18px; height: 18px;"></i>
+                                </a>
+                                <a href="#" class="social-icon text-white">
+                                    <i data-lucide="github" style="width: 18px; height: 18px;"></i>
+                                </a>
+                                <a href="#" class="social-icon text-white">
+                                    <i data-lucide="youtube" style="width: 18px; height: 18px;"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </footer>
 
-                <div class="text-center my-5">
-                        <a href="#${PAGES_INFO[PAGES.PUBLICATIONS].route.path}" class="btn btn-gradient">
-                            Découvrir toute l'équipe
-                            <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
-                        </a>
-                    </div>
-            </section>
             
         </div>
 

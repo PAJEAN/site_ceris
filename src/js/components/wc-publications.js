@@ -19,10 +19,13 @@ TEMPLATE.innerHTML = /* html */`
     <style>
         .publication-item {
             border-left: 3px solid var(--primary-text);
+            transition: transform 0.3s ease;
         }
 
         .publication-item:hover {
             border-left-color: var(--vermillion-light);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
     </style>
 

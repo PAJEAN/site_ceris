@@ -49,6 +49,15 @@ class TeamManager {
     /**
      * 
      * @param {string} project_id 
+     * @returns {boolean}
+     */
+    exist(project_id) {
+        return this.team.filter(project => project.id == project_id).length > 0;
+    }
+
+    /**
+     * 
+     * @param {string} project_id 
      * @returns {Team}
      */
     get_by_id(project_id) {
@@ -57,13 +66,22 @@ class TeamManager {
     }
 
     /**
-     * 
-     * @param {string} project_id 
-     * @returns {boolean}
+     * @returns {Team[]}
      */
-    exist(project_id) {
-        return this.team.filter(project => project.id == project_id).length > 0;
+    order_by_priority() {
+        return this.team.sort((a, b) => {
+            // Primary: numeric priority (ascending).
+            let p = a.priority - b.priority;
+            if (p !== 0) return p;
+            // Secondary: alphabetical by last_name.
+            let la = (a.last_name || '').toLowerCase();
+            let lb = (b.last_name || '').toLowerCase();
+            if (la < lb) return -1;
+            if (la > lb) return 1;
+            return 0;
+        });
     }
+
 }
 
 export const TEAM_MANAGER = new TeamManager();

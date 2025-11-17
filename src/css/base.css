@@ -102,19 +102,6 @@ body {
     text-align: center;
 }
 
-.feature-icon {
-width: 60px;
-height: 60px;
-background: #FF7C4D;
-/* background: linear-gradient(150deg,rgba(255, 124, 77, 1) 0%, rgba(92, 197, 131, 1) 100%); */
-
-border-radius: 12px;
-display: flex;
-align-items: center;
-justify-content: center;
-color: white;
-margin-bottom: 1rem;
-}
 
 
 
@@ -124,35 +111,10 @@ margin-bottom: 1rem;
 
 
 
-.team-img {
-width: 80px;
-height: 80px;
-object-fit: cover;
-border-radius: 50%;
-border: 3px solid #fff;
-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
 
 footer {
 background: #212529;
 color: #adb5bd;
-}
-
-
-.social-icon {
-width: 40px;
-height: 40px;
-border-radius: 8px;
-color: var(--vermillion-light);
-display: inline-flex;
-align-items: center;
-justify-content: center;
-transition: all 0.3s ease;
-}
-.social-icon:hover {
-background: var(--vermillion-light);
-color: white;
-transform: translateY(-3px);
 }
 
 .teaching-item {
@@ -160,7 +122,7 @@ transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.foorter a {
+.footer a {
     --bs-link-color-rgb: var(--primary-text-rgb);
     color: #adb5bd;
 }

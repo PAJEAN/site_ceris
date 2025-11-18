@@ -1,5 +1,7 @@
 // @ts-check
 
+/*** Librairies ***/
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /* Components */
 import { WC } from "./__ns__";
 /** Store **/
@@ -33,6 +35,7 @@ TEMPLATE.innerHTML = /* html */`
             margin-bottom: 1rem;
         }
         .teaching-card {
+            cursor: pointer;
             transition: all 0.3s ease;
         }        
         .teaching-card:hover {
@@ -100,7 +103,7 @@ TEMPLATE.innerHTML = /* html */`
     </div>
 `;
 
-export class WcTeachingCard extends HTMLElement {
+export class WcTeachingCard extends BaseCustomElements {
     static teaching_id_attribute_name = 'data-teaching-id';
 
     constructor() {
@@ -189,14 +192,4 @@ export class WcTeachingCard extends HTMLElement {
     }
 
     disconnectedCallback() {}
-}
-
-
-try {
-    (function() {
-        window.customElements.define(WC.TEACHING_CARD, WcTeachingCard);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

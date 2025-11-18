@@ -1,13 +1,13 @@
 // @ts-check
 
-/* Components */
-import { WC } from "./__ns__";
+/*** Librairies ***/
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { PROJECT_MANAGER } from "JS/store/modules/projects/s-projects";
 import { Project } from "JS/store/modules/projects/project";
 
 
-const TAG_IDS = {
+const ID = {
     wc_main: 'wc-main',
     image: 'project-image',
     badge: 'project-badge',
@@ -17,18 +17,16 @@ const TAG_IDS = {
     authors: 'project-authors'
 };
 
-const COMPONENT_NAME = WC.PROJET_CARD;
-
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
     <style>
         .project-img {
             height: 220px;
             object-fit: cover;
-            cursor: pointer;
             transition: transform 0.3s ease;
         }
         .project-card {
+            cursor: pointer;
             transition: all 0.3s ease;
         }
         .project-card:hover {
@@ -37,30 +35,30 @@ TEMPLATE.innerHTML = /* html */`
         }
     </style>
 
-    <div id="${TAG_IDS.wc_main}">
+    <div id="${ID.wc_main}">
         <div class="card base-card h-100 border-0 shadow-sm project-card">
-            <img id="${TAG_IDS.image}" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop" alt="Projet" class="project-img">
+            <img id="${ID.image}" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop" alt="Projet" class="project-img">
             <div class="card-body d-flex flex-column justify-content-between gap-2">
                 <div>
                     <div class="d-flex align-items-center gap-2 mb-3">
-                        <div id="${TAG_IDS.badge}" class="d-flex align-items-center">
+                        <div id="${ID.badge}" class="d-flex align-items-center">
                             <span class="badge bg-warning badge-custom">Warning</span>
                         </div>
-                        <small id="${TAG_IDS.duration}" class="text-muted"></small>
+                        <small id="${ID.duration}" class="text-muted"></small>
                     </div>
-                    <h5 id="${TAG_IDS.title}" class="card-title fw-semibold">Identifiant introuvable</h5>
-                    <p id="${TAG_IDS.abstract}" class="card-text small text-muted"></p>
+                    <h5 id="${ID.title}" class="card-title fw-semibold">Identifiant introuvable</h5>
+                    <p id="${ID.abstract}" class="card-text small text-muted"></p>
                 </div>
                 <div class="d-flex align-items-center text-muted small">
                     <i data-lucide="users" class="me-2" style="width: 16px; height: 16px;"></i>
-                    <span id="${TAG_IDS.authors}"></span>
+                    <span id="${ID.authors}"></span>
                 </div>
             </div>
         </div>
     </div>
 `;
 
-export class WcProjectCard extends HTMLElement {
+export class WcProjectCard extends BaseCustomElements {
     static project_id_attribute_name = 'data-project-id';
 
     constructor() {
@@ -74,34 +72,34 @@ export class WcProjectCard extends HTMLElement {
     }
 
     _abstract() {
-        let tag = this._content.querySelector(`#${TAG_IDS.abstract}`);
+        let tag = this._content.querySelector(`#${ID.abstract}`);
         tag.textContent = this._project.short_abstract;
     }
 
     _authors() {
-        let tag = this._content.querySelector(`#${TAG_IDS.authors}`);
+        let tag = this._content.querySelector(`#${ID.authors}`);
         tag.textContent = this._project.authors;
     }
 
     _badge() {
-        let tag = this._content.querySelector(`#${TAG_IDS.badge}`);
+        let tag = this._content.querySelector(`#${ID.badge}`);
         tag.textContent = '';
         tag.appendChild(this._project.badge());
     }
 
     _duration() {
-        let tag = this._content.querySelector(`#${TAG_IDS.duration}`);
+        let tag = this._content.querySelector(`#${ID.duration}`);
         tag.textContent = this._project.duration();
     }
 
     _image() {
         /** @type {HTMLImageElement} */
-        let tag = this._content.querySelector(`#${TAG_IDS.image}`);        
+        let tag = this._content.querySelector(`#${ID.image}`);        
         tag.src = this._project.image;
     }
 
     _title() {
-        let tag = this._content.querySelector(`#${TAG_IDS.title}`);
+        let tag = this._content.querySelector(`#${ID.title}`);
         tag.textContent = this._project.title;
     }
 
@@ -118,7 +116,7 @@ export class WcProjectCard extends HTMLElement {
         this.appendChild(TEMPLATE.content.cloneNode(true));
 
         /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${TAG_IDS.wc_main}`) ?? this._content;
+        this._content = this.querySelector(`#${ID.wc_main}`) ?? this._content;
 
         this._project_id = this.hasAttribute(WcProjectCard.project_id_attribute_name) ? this.getAttribute(WcProjectCard.project_id_attribute_name): this._project_id;
         
@@ -129,14 +127,4 @@ export class WcProjectCard extends HTMLElement {
     }
 
     disconnectedCallback() {}
-}
-
-
-try {
-    (function() {
-        window.customElements.define(COMPONENT_NAME, WcProjectCard);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

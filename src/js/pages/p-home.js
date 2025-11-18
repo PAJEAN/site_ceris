@@ -1,3 +1,5 @@
+/*** Librairies ***/
+import { CustomElements } from 'JS/lib/base-custom-elements';
 /** NS **/
 import { PAGES, PAGES_INFO } from 'JS/pages/__ns__';
 import { WC } from 'JS/components/__ns__';
@@ -9,6 +11,7 @@ import { WcNav } from 'JS/components/wc-nav';
 import { WcProjets } from 'JS/components/wc-projets';
 import { WcTeam } from 'JS/components/wc-team';
 import { WcTeaching } from 'JS/components/wc-teaching';
+import { WcStats } from 'JS/components/wc-stats';
 /** Utils **/
 
 (function () {
@@ -107,7 +110,7 @@ import { WcTeaching } from 'JS/components/wc-teaching';
         </style>
 
         <div id="${TAG_IDS.main}">
-            <${WC.NAV} id="${TAG_IDS.wc_nav}"></${WC.NAV}>
+            <${WcNav.tag_name} id="${TAG_IDS.wc_nav}"></${WcNav.tag_name}>
 
             <header class="padding-global">
                 <!-- Hero Section -->
@@ -128,7 +131,7 @@ import { WcTeaching } from 'JS/components/wc-teaching';
 
             <!-- Stats Section -->
             <section class="pt-5 padding-global">
-                <${WC.STATS} class="padding-global"></${WC.STATS}>
+                <${WcStats.tag_name} class="padding-global"></${WcStats.tag_name}>
             </section>
 
             <!-- Research Areas Section -->
@@ -194,7 +197,7 @@ import { WcTeaching } from 'JS/components/wc-teaching';
 
                     <div>
                         <div id="${TAG_IDS.project_container}" class="row g-4">
-                            <${WC.PROJETS} ${WcProjets.limit_attribute_name}="6"></${WC.PROJETS}>
+                            <${WcProjets.tag_name} ${WcProjets.limit_attribute_name}="6"></${WcProjets.tag_name}>
                         </div>
                         
                         <div class="text-center mt-5 pt-3">
@@ -218,7 +221,7 @@ import { WcTeaching } from 'JS/components/wc-teaching';
                     </div>
                     
                     <div id="${TAG_IDS.wc_publications_container}">
-                        <${WC.PUBLICATIONS} data-rows="5" class="section-color"></${WC.PUBLICATIONS}>
+                        <${WcPublications.tag_name} data-rows="5" class="section-color"></${WcPublications.tag_name}>
                     </div>
                     
                     <div class="text-center mt-5 pt-3">
@@ -243,7 +246,7 @@ import { WcTeaching } from 'JS/components/wc-teaching';
 
                     <!-- Researchers -->
                     <div class="mb-5">
-                        <${WC.TEAM} ${WcTeam.limit_attribute_name}="6"></${WC.TEAM}>
+                        <${WcTeam.tag_name} ${WcTeam.limit_attribute_name}="6"></${WcTeam.tag_name}>
                     </div>
                 </div>
 
@@ -265,7 +268,7 @@ import { WcTeaching } from 'JS/components/wc-teaching';
                         </div>
                     </div>
                     
-                    <${WC.TEACHING} ${WcTeaching.limit_attribute_name}="1"></${WC.TEACHING}>
+                    <${WcTeaching.tag_name} ${WcTeaching.limit_attribute_name}="1"></${WcTeaching.tag_name}>
                 </div>
 
                 <!-- <div class="text-center pt-3">
@@ -343,7 +346,7 @@ import { WcTeaching } from 'JS/components/wc-teaching';
         _publications() {
             this._clear_publications();
             let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
-            let wc_publications = document.createElement(`${WC.PUBLICATIONS}`);
+            let wc_publications = document.createElement(`${WcPublications.tag_name}`);
             wc_publications.setAttribute(WcPublications.rows_attribute_name, (5).toString());
             tag.appendChild(wc_publications);
         }

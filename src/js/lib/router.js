@@ -1,15 +1,17 @@
 // @ts-check
 
+/*** Librairies ***/
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /* Namespaces */
 import { PAGES_INFO } from 'JS/pages/__ns__';
 /* Store */
 import { store } from 'JS/store/index';
 
+
 export const keys = {
-    ROUTER: 'app-router',
     ROUTE:  'app-route',
     OUTLET: 'app-outlet'
-}
+};
 
 /**
  * Example: user/manager/administrator.
@@ -24,20 +26,39 @@ function parseTokens(hash) {
         });
 }
 
-export class Router extends HTMLElement {
+export class Router extends BaseCustomElements {
+
+    static init() {
+        const ROUTER = document.createElement(this.tag_name);
+        const OUTLET = document.createElement(keys.OUTLET);
+        ROUTER.appendChild(OUTLET);
+        
+        let first_node = document.body.firstChild;
+        if (first_node) {
+            document.body.insertBefore(ROUTER, first_node);
+        } else {
+            document.body.appendChild(ROUTER);
+        }
+    }
+
+    static get tag_name() {
+        return super.tag_name;
+    }
+
     constructor() {
         super();
         this.current_route;
-        this.routes;
+        this.routes;        
     }
 
     get outlet() {
         return this.querySelector(keys.OUTLET);
     }
 
-    _initRoutes() {
+    _initRoutes() {        
         /** @type {Router} */
-        const ROUTER = document.querySelector(keys.ROUTER);
+        const ROUTER = document.querySelector(Router.tag_name);
+        
         for (let page_name in PAGES_INFO) {
             let route = document.createElement(keys.ROUTE);
             let page_info = PAGES_INFO[page_name];
@@ -173,13 +194,4 @@ export class Router extends HTMLElement {
     }
   
     disconnectedCallback() {}
-}
-
-try {
-    (function() {
-        window.customElements.define(keys.ROUTER, Router);
-    })()
-}
-catch (err) {
-    console.error(err);
 }

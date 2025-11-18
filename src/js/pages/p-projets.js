@@ -2,7 +2,9 @@
 
 /** NS **/
 import { PAGES } from 'JS/pages/__ns__';
-import { WC } from 'JS/components/__ns__';
+/*** Components ***/
+import { WcNav } from 'JS/components/wc-nav';
+import { WcProjets } from 'JS/components/wc-projets';
 
 const TAG_IDS = {
     main: 'p-main',
@@ -46,7 +48,7 @@ TEMPLATE.innerHTML = /* html */`
     </style>
 
     <div id="${TAG_IDS.main}">
-        <${WC.NAV}></${WC.NAV}>
+        <${WcNav.tag_name}></${WcNav.tag_name}>
         
         <section class="pt-2 pb-5 padding-global">
             <div class="container-fluid py-5">
@@ -58,7 +60,7 @@ TEMPLATE.innerHTML = /* html */`
                 </div>
 
                 <div id="${TAG_IDS.project_container}" class="row g-4">
-                    <${WC.PROJETS}></${WC.PROJETS}>
+                    <${WcProjets.tag_name}></${WcProjets.tag_name}>
                 </div>
 
             </div>

@@ -1,17 +1,15 @@
 // @ts-check
 
-/** NS **/
-import { WC } from 'JS/components/__ns__';
+/*** Librairies ***/
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { HAL } from 'JS/store/modules/hal/s-hal';
 import { Publication } from 'JS/store/modules/hal/publication';
 
 
-const TAG_IDS = {
-    wc_main:    'wc-main'
+const ID = {
+    wc_main: 'wc-main'
 };
-
-const NAME = WC.PUBLICATIONS;
 
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
@@ -29,7 +27,7 @@ TEMPLATE.innerHTML = /* html */`
         }
     </style>
 
-    <div id="${TAG_IDS.wc_main}" class="row g-4">
+    <div id="${ID.wc_main}" class="row g-4">
         <div class="col-12">
             <div class="publication-item base-radius-16 base-shadow p-4">
                 <div class="d-flex justify-content-between align-items-start">
@@ -51,7 +49,7 @@ TEMPLATE.innerHTML = /* html */`
     </div>
 `;
 
-export class WcPublications extends HTMLElement {
+export class WcPublications extends BaseCustomElements {
     static rows_attribute_name = 'data-rows';
 
     constructor() {
@@ -153,7 +151,7 @@ export class WcPublications extends HTMLElement {
         this.appendChild(TEMPLATE.content.cloneNode(true));
 
         /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${TAG_IDS.wc_main}`) ?? this._content;
+        this._content = this.querySelector(`#${ID.wc_main}`) ?? this._content;
 
         this._rows = this.hasAttribute(WcPublications.rows_attribute_name) ? parseInt(this.getAttribute(WcPublications.rows_attribute_name) ?? this._rows.toString()): this._rows;
 
@@ -161,14 +159,4 @@ export class WcPublications extends HTMLElement {
     }
     
     disconnectedCallback () {}
-}
-
-
-try {    
-    (function() {
-        window.customElements.define(NAME, WcPublications);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

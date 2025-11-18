@@ -1,7 +1,7 @@
 // @ts-check
 
-/** NS **/
-import { WC } from 'JS/components/__ns__';
+/*** Librairies ***/
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { TEAM_MANAGER } from 'JS/store/modules/team/s-team';
 import { WcTeamCard } from 'JS/components/wc-team-card';
@@ -11,8 +11,6 @@ const ID = {
     team_container: 'team-container',
 };
 
-const NAME = WC.TEAM;
-
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
 
@@ -21,12 +19,12 @@ TEMPLATE.innerHTML = /* html */`
 
     <div id="${ID.main}">
         <div id="${ID.team_container}" class="row g-4">
-            <${WC.TEAM_CARD} ${WcTeamCard.team_id_attribute_name}="test#1"></${WC.TEAM_CARD}>
+            <${WcTeamCard.tag_name} ${WcTeamCard.team_id_attribute_name}="test#1"></${WcTeamCard.tag_name}>
         </div>
     </div>
 `;
 
-export class WcTeam extends HTMLElement {
+export class WcTeam extends BaseCustomElements {
     static limit_attribute_name = 'data-limit';
 
     constructor() {
@@ -43,7 +41,7 @@ export class WcTeam extends HTMLElement {
         for (let [index, team] of TEAM_MANAGER.order_by_priority().entries()) {
             let div = document.createElement('div');
             div.classList.add('col-md-6', 'col-lg-4');
-            let team_tag = document.createElement(WC.TEAM_CARD);
+            let team_tag = document.createElement(WcTeamCard.tag_name);
             team_tag.setAttribute(WcTeamCard.team_id_attribute_name, team.id);
             div.appendChild(team_tag);
             tag.appendChild(div);
@@ -70,13 +68,4 @@ export class WcTeam extends HTMLElement {
     }
     
     disconnectedCallback () {}
-}
-
-try {
-    (function() {
-        window.customElements.define(NAME, WcTeam);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

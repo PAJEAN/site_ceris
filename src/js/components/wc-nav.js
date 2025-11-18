@@ -1,17 +1,15 @@
 // @ts-check
 
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** NS **/
-import { WC } from 'JS/components/__ns__';
 import { NAV_INFO } from 'JS/pages/__ns__';
 
 
-const TAG_IDS = {
+const ID = {
     wc_main:   'wc-main',
     nav_brand: 'nav-brand',
     nav_items: 'nav-items'
 };
-
-const NAME = WC.NAV;
 
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
@@ -37,15 +35,15 @@ TEMPLATE.innerHTML = /* html */`
         }
     </style>
 
-    <div id="${TAG_IDS.wc_main}">
+    <div id="${ID.wc_main}">
         <nav class="navbar navbar-expand-lg padding-global">
             <div class="container-fluid p-0">
-                <a id="${TAG_IDS.nav_brand}" class="navbar-brand" href="#">Ceris</a>
+                <a id="${ID.nav_brand}" class="navbar-brand" href="#">Ceris</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse flex-grow-0" id="navbarTogglerDemo02">
-                    <ul id="${TAG_IDS.nav_items}" class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul id="${ID.nav_items}" class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item fw-semibold">
                             <a class="nav-link" aria-current="page" href="#">Projets</a>
                         </li>
@@ -65,7 +63,7 @@ TEMPLATE.innerHTML = /* html */`
     </div>
 `;
 
-export class WcNav extends HTMLElement {
+export class WcNav extends BaseCustomElements {
     static location_attribute_name = 'data-location';
 
     constructor() {
@@ -76,14 +74,14 @@ export class WcNav extends HTMLElement {
 
     nav_brand() {
         /** @type {HTMLAnchorElement} */
-        let tag = this._content.querySelector(`#${TAG_IDS.nav_brand}`);
+        let tag = this._content.querySelector(`#${ID.nav_brand}`);
         if (!tag) return;
         tag.href = NAV_INFO.navbar_brand.link;
         tag.textContent = NAV_INFO.navbar_brand.content;
     }
 
     nav_items() {
-        let tag = this._content.querySelector(`#${TAG_IDS.nav_items}`);
+        let tag = this._content.querySelector(`#${ID.nav_items}`);
         if (!tag) return;
         tag.textContent = '';
         for (let item of NAV_INFO.nav_items) {
@@ -114,19 +112,10 @@ export class WcNav extends HTMLElement {
         this.appendChild(TEMPLATE.content.cloneNode(true));
 
         /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${TAG_IDS.wc_main}`) ?? this._content;
+        this._content = this.querySelector(`#${ID.wc_main}`) ?? this._content;
 
         this.init();
     }
     
     disconnectedCallback () {}
-}
-
-try {
-    (function() {
-        window.customElements.define(NAME, WcNav);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

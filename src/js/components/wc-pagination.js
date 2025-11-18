@@ -1,17 +1,14 @@
 // @ts-check
 
-/** NS **/
-import { WC } from 'JS/components/__ns__';
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { HAL } from 'JS/store/modules/hal/s-hal';
 
-const TAG_IDS = {
+
+const ID = {
     wc_main:  'wc-main',
     ul_items: 'ul-items',
 };
-
-
-const NAME = WC.PAGINATION;
 
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
@@ -28,9 +25,9 @@ TEMPLATE.innerHTML = /* html */`
         }
     </style>
 
-    <div id="${TAG_IDS.wc_main}">
+    <div id="${ID.wc_main}">
         <nav aria-label="Page navigation example">
-            <ul id="${TAG_IDS.ul_items}" class="pagination justify-content-center">
+            <ul id="${ID.ul_items}" class="pagination justify-content-center">
                 <li class="page-item">
                     <a class="page-link" href="#" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
@@ -49,7 +46,7 @@ TEMPLATE.innerHTML = /* html */`
     </div>
 `;
 
-export class WcPagination extends HTMLElement {
+export class WcPagination extends BaseCustomElements {
     static rows_attribute_name = 'data-rows';
     static current_page_attribute_name = 'data-current-page';
 
@@ -104,7 +101,7 @@ export class WcPagination extends HTMLElement {
     }
 
     _render() {
-        let ul = this._content.querySelector(`#${TAG_IDS.ul_items}`);
+        let ul = this._content.querySelector(`#${ID.ul_items}`);
         ul.appendChild(this._previous_li());
 
         let delta = 1;
@@ -172,7 +169,7 @@ export class WcPagination extends HTMLElement {
     }
 
     clear() {
-        let ul = this._content.querySelector(`#${TAG_IDS.ul_items}`);
+        let ul = this._content.querySelector(`#${ID.ul_items}`);
         ul.textContent = '';
     }
 
@@ -187,7 +184,7 @@ export class WcPagination extends HTMLElement {
         this.appendChild(TEMPLATE.content.cloneNode(true));
 
         /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${TAG_IDS.wc_main}`) ?? this._content;
+        this._content = this.querySelector(`#${ID.wc_main}`) ?? this._content;
 
         this._rows = this.hasAttribute(WcPagination.rows_attribute_name) ? parseInt(this.getAttribute(WcPagination.rows_attribute_name) ?? this._rows.toString()): this._rows;
 
@@ -197,13 +194,4 @@ export class WcPagination extends HTMLElement {
     }
     
     disconnectedCallback () {}
-}
-
-try {
-    (function() {
-        window.customElements.define(NAME, WcPagination);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

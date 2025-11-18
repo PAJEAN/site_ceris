@@ -2,8 +2,8 @@
 
 /** NS **/
 import { PAGES } from 'JS/pages/__ns__';
-import { WC } from 'JS/components/__ns__';
 /** Components **/
+import { WcNav } from 'JS/components/wc-nav';
 import { WcPagination } from 'JS/components/wc-pagination';
 import { WcPublications } from 'JS/components/wc-publications';
 /** Store **/
@@ -26,7 +26,7 @@ TEMPLATE.innerHTML = /* html */`
     </style>
 
     <div id="${TAG_IDS.main}">
-        <${WC.NAV}></${WC.NAV}>
+        <${WcNav.tag_name}></${WcNav.tag_name}>
         
         <section class="pt-2 pb-5 padding-global">
             <div class="container-fluid py-5">
@@ -40,7 +40,7 @@ TEMPLATE.innerHTML = /* html */`
                 <div id="${TAG_IDS.wc_publications_container}"></div>
             </div>
             <div id="${TAG_IDS.wc_pagination_container}">
-                <${WC.PAGINATION} id="${TAG_IDS.wc_pagination}" ${WcPagination.rows_attribute_name}="5"></${WC.PAGINATION}>
+                <${WcPagination.tag_name} id="${TAG_IDS.wc_pagination}" ${WcPagination.rows_attribute_name}="5"></${WcPagination.tag_name}>
             </div>
         </section>
     </div>
@@ -90,7 +90,7 @@ class PPublication extends HTMLElement {
     _pagination() {
         this._clear_pagination();
         let tag = this._content.querySelector(`#${TAG_IDS.wc_pagination_container}`);
-        let wc_pagination = document.createElement(`${WC.PAGINATION}`);
+        let wc_pagination = document.createElement(`${WcPagination.tag_name}`);
         wc_pagination.id = TAG_IDS.wc_pagination;
         wc_pagination.setAttribute(WcPublications.rows_attribute_name, this._rows.toString());
         tag.appendChild(wc_pagination);
@@ -99,7 +99,7 @@ class PPublication extends HTMLElement {
     _publications() {
         this._clear_publications();
         let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
-        let wc_publications = document.createElement(`${WC.PUBLICATIONS}`);
+        let wc_publications = document.createElement(`${WcPublications.tag_name}`);
         wc_publications.setAttribute(WcPublications.rows_attribute_name, this._rows.toString());
         tag.appendChild(wc_publications);
     }

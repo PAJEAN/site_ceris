@@ -1,7 +1,7 @@
 // @ts-check
 
-/** NS **/
-import { WC } from 'JS/components/__ns__';
+/*** Librairies ***/
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { TEACHING_MANAGER } from 'JS/store/modules/teaching/s-teaching';
 import { WcTeachingCard } from 'JS/components/wc-teaching-card';
@@ -19,8 +19,6 @@ const ID = {
     modal_extend_resume: 'teaching-modal-extend-resume',
     modal_manager: 'teaching-modal-manager'
 };
-
-const NAME = WC.TEACHING;
 
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
@@ -49,7 +47,7 @@ TEMPLATE.innerHTML = /* html */`
 
     <div id="${ID.main}">
         <div id="${ID.teaching_container}" class="row g-4">
-            <${WC.TEACHING_CARD} ${WcTeachingCard.teaching_id_attribute_name}="test#1"></${WC.TEACHING_CARD}>
+            <${WcTeachingCard.tag_name} ${WcTeachingCard.teaching_id_attribute_name}="test#1"></${WcTeachingCard.tag_name}>
         </div>
 
         <!-- ✅ Modal large -->
@@ -93,7 +91,7 @@ TEMPLATE.innerHTML = /* html */`
     </div>
 `;
 
-export class WcTeaching extends HTMLElement {
+export class WcTeaching extends BaseCustomElements {
     static limit_attribute_name = 'data-limit';
 
     constructor() {
@@ -109,7 +107,7 @@ export class WcTeaching extends HTMLElement {
             // @ts-ignore
             const modal = new bootstrap.Modal(modal_tag);
     
-            this._content.querySelectorAll(WC.TEACHING_CARD).forEach(card => {
+            this._content.querySelectorAll(WcTeachingCard.tag_name).forEach(card => {
                 card.addEventListener('click', () => {
                     let teaching_id = card.getAttribute(WcTeachingCard.teaching_id_attribute_name);
                     let teaching = TEACHING_MANAGER.get_by_id(teaching_id);
@@ -121,8 +119,6 @@ export class WcTeaching extends HTMLElement {
                     badge.textContent = teaching.level;
                     this._content.querySelector(`#${ID.modal_duration}`).textContent = teaching.time;
                     this._content.querySelector(`#${ID.modal_resume}`).textContent = teaching.resume;
-                    console.log(this._content.querySelector(`#${ID.modal_resume}`));
-                    console.log(teaching.resume);
                     
                     this._content.querySelector(`#${ID.modal_extend_resume}`).textContent = teaching.extended_resume;
                     this._content.querySelector(`#${ID.modal_manager}`).textContent = teaching.manager;
@@ -145,7 +141,7 @@ export class WcTeaching extends HTMLElement {
         for (let [index, teaching] of TEACHING_MANAGER.programs.entries()) {
             let div = document.createElement('div');
             div.classList.add('col-md-6');
-            let teaching_tag = document.createElement(WC.TEACHING_CARD);
+            let teaching_tag = document.createElement(WcTeachingCard.tag_name);
             teaching_tag.setAttribute(WcTeachingCard.teaching_id_attribute_name, teaching.id);
             div.appendChild(teaching_tag);
             tag.appendChild(div);
@@ -175,13 +171,4 @@ export class WcTeaching extends HTMLElement {
     }
     
     disconnectedCallback () {}
-}
-
-try {
-    (function() {
-        window.customElements.define(NAME, WcTeaching);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

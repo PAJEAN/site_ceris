@@ -1,4 +1,5 @@
 export const WC = {
+    FOOTER:         'wc-footer',
     PAGINATION:     'wc-pagination',
     PUBLICATIONS:   'wc-publications',
     NAV:            'wc-nav',

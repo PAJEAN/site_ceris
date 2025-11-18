@@ -1,7 +1,7 @@
 // @ts-check
 
-/* Components */
-import { WC } from "./__ns__";
+/*** Librairies ***/
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { TEAM_MANAGER } from "JS/store/modules/team/s-team";
 import { Team } from "JS/store/modules/team/team";
@@ -75,7 +75,7 @@ TEMPLATE.innerHTML = /* html */`
     </div>
 `;
 
-export class WcTeamCard extends HTMLElement {
+export class WcTeamCard extends BaseCustomElements {
     static team_id_attribute_name = 'data-team-id';
 
     constructor() {
@@ -163,14 +163,4 @@ export class WcTeamCard extends HTMLElement {
     }
 
     disconnectedCallback() {}
-}
-
-
-try {
-    (function() {
-        window.customElements.define(WC.TEAM_CARD, WcTeamCard);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

@@ -1,7 +1,6 @@
 // @ts-check
 
 /** NS **/
-import { WC } from 'JS/components/__ns__';
 import { NAV_INFO } from 'JS/pages/__ns__';
 
 
@@ -10,8 +9,6 @@ const ID = {
     nav_brand: 'nav-brand',
     nav_items: 'nav-items'
 };
-
-const NAME = WC.FOOTER;
 
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
@@ -120,13 +117,4 @@ export class WcFooter extends HTMLElement {
     }
     
     disconnectedCallback () {}
-}
-
-try {
-    (function() {
-        window.customElements.define(NAME, WcFooter);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

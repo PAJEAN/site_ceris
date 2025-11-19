@@ -2,8 +2,6 @@
 
 /*** Librairies ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
-/* Namespaces */
-import { PAGES_INFO } from 'JS/pages/__ns__';
 /* Store */
 import { store } from 'JS/store/index';
 
@@ -27,9 +25,11 @@ function parseTokens(hash) {
 }
 
 export class Router extends BaseCustomElements {
+    #pages;
 
-    static init() {
-        const ROUTER = document.createElement(this.tag_name);
+    static init(pages) {
+        const ROUTER = /** @type {Router} */ (document.createElement(this.tag_name));
+        ROUTER.pages = pages;      
         const OUTLET = document.createElement(keys.OUTLET);
         ROUTER.appendChild(OUTLET);
         
@@ -41,27 +41,26 @@ export class Router extends BaseCustomElements {
         }
     }
 
-    static get tag_name() {
-        return super.tag_name;
-    }
-
     constructor() {
         super();
+        this.#pages = {};
         this.current_route;
-        this.routes;        
+        this.routes;
     }
+
+    get pages() { return this.#pages; }
+    set pages(pages) { this.#pages = pages; }
 
     get outlet() {
         return this.querySelector(keys.OUTLET);
     }
 
-    _initRoutes() {        
+    _initRoutes() {
         /** @type {Router} */
-        const ROUTER = document.querySelector(Router.tag_name);
-        
-        for (let page_name in PAGES_INFO) {
+        const ROUTER = document.querySelector(Router.tag_name);        
+        for (let page_name in this.#pages) {
             let route = document.createElement(keys.ROUTE);
-            let page_info = PAGES_INFO[page_name];
+            let page_info = this.#pages[page_name];
             
             if (!page_info.hasOwnProperty('route')) { continue; }
             

@@ -1,14 +1,13 @@
 // @ts-check
 
-/*** Libraries ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /*** Components ***/
 import { WcNav } from 'JS/components/wc-nav';
-import { WcTeam } from 'JS/components/wc-team';
+import { WcTeaching } from 'JS/components/wc-teaching';
 
 
 const ID = {
-    main: 'p-main',
+    main: 'div-main',
 };
 
 const TEMPLATE = document.createElement('template');
@@ -25,24 +24,25 @@ TEMPLATE.innerHTML = /* html */`
 
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">
-                        <h2 class="display-5 section-title mb-3">Notre équipe</h2>
-                        <p class="lead text-muted">Des experts passionnés dédiés à faire avancer la recherche en informatique</p>
+                        <h2 class="display-5 section-title mb-3">Filières d'enseignement</h2>
+                        <p class="lead text-muted">Nos programmes de formation soutenus par le laboratoire</p>
                     </div>
                 </div>
 
                 <!-- Researchers -->
                 <div class="mb-5">
-                    <${WcTeam.tag_name}></${WcTeam.tag_name}>
+                    <${WcTeaching.tag_name}></${WcTeaching.tag_name}>
             </div>
         </section>
     </div>
 `;
 
-export class PTeam extends BaseCustomElements {
+export class PTeaching extends BaseCustomElements {
+    /** @type {HTMLDivElement} */
+    #content;
+
     constructor() {
         super();
-        /** @type {HTMLDivElement} */
-        this._content = document.createElement('div');
     }
 
     init() {}
@@ -50,8 +50,7 @@ export class PTeam extends BaseCustomElements {
     connectedCallback () {
         this.appendChild(TEMPLATE.content.cloneNode(true));
 
-        /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${ID.main}`) ?? this._content;
+        this.#content = this.querySelector(`#${ID.main}`);
 
         this.init();
     }

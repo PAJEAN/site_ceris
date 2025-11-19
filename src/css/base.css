@@ -48,6 +48,16 @@ body {
     }
 }
 
+/* Modal */
+html {
+    overflow-y: scroll !important;
+}
+
+.modal-open {
+    padding-right: 0 !important;
+}
+
+
 /* 
 888888b.                              
 888  "88b                             
@@ -101,7 +111,6 @@ body {
     padding: 2rem;
     text-align: center;
 }
-
 
 
 

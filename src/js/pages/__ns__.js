@@ -8,7 +8,7 @@ export const PAGES = {
     TEACHING: 'p-teaching',
 }
 
-export const PAGES_INFO = {
+export const PAGES_INFO__ = {
     [PAGES.HOME]: {
         route: {
             path: '/home',
@@ -57,9 +57,9 @@ export const PAGES_INFO = {
 export const NAV_INFO = {
     navbar_brand: {content: 'Ceris', link: '#'},
     nav_items: [
-        {content: 'Projets', link: `#${PAGES_INFO[PAGES.PROJETS].route.path}`},
-        {content: 'Publications', link: `#${PAGES_INFO[PAGES.PUBLICATIONS].route.path}`},
-        {content: 'Équipe', link: `#${PAGES_INFO[PAGES.TEAM].route.path}`},
-        {content: 'Enseignements', link: `#${PAGES_INFO[PAGES.TEACHING].route.path}`},
+        {content: 'Projets', link: `#${PAGES_INFO__[PAGES.PROJETS].route.path}`},
+        {content: 'Publications', link: `#${PAGES_INFO__[PAGES.PUBLICATIONS].route.path}`},
+        {content: 'Équipe', link: `#${PAGES_INFO__[PAGES.TEAM].route.path}`},
+        {content: 'Enseignements', link: `#${PAGES_INFO__[PAGES.TEACHING].route.path}`},
     ],
 }

@@ -1,12 +1,11 @@
 // @ts-check
 
-/*** Libraries ***/
+
+console.log("#1");
+
+
+/*** Router ***/
 import { Router } from 'JS/lib/router';
-
-Router.init();
-Router.define();
-
-
 /*** Components ***/
 import { WcNav } 			from 'JS/components/wc-nav';
 import { WcPagination } 	from 'JS/components/wc-pagination';
@@ -18,6 +17,56 @@ import { WcTeaching }		from 'JS/components/wc-teaching';
 import { WcTeachingCard } 	from 'JS/components/wc-teaching-card';
 import { WcTeam }			from 'JS/components/wc-team';
 import { WcTeamCard }		from 'JS/components/wc-team-card';
+/*** Pages ***/
+import { PHome } from 'JS/pages/p-home';
+import { PProjets } from './js/pages/p-projets';
+import { PPublication } from 'JS/pages/p-publications';
+import { PTeaching } from 'JS/pages/p-teaching';
+import { PTeam } from 'JS/pages/p-team';
+
+export const PAGES_INFO = {
+    [PHome.tag_name]: {
+        route: {
+            path: '/home',
+            title: 'Home',
+            is_default: true
+        }
+    },
+    [PPublication.tag_name]: {
+        route: {
+            path: '/publications',
+            title: 'Publications'
+        }
+    },
+    [PProjets.tag_name]: {
+        route: {
+            path: '/projets',
+            title: 'Projets'
+        }
+    },
+    [PTeam.tag_name]: {
+        route: {
+            path: '/equipe',
+            title: 'Equipe'
+        }
+    },
+    [PTeaching.tag_name]: {
+        route: {
+            path: '/enseignements',
+            title: 'Enseignements'
+        }
+    }
+};
+
+import { LOAD_PAGES } from 'JS/utils/constants';
+LOAD_PAGES(PAGES_INFO);
+
+
+Router.define();
+Router.init(PAGES_INFO);
+
+
+/*** Components ***/
 
 WcNav.define();
 WcPagination.define();
@@ -32,9 +81,13 @@ WcTeamCard.define();
 
 
 /*** Pages ***/
-import './js/pages/p-home';
-import './js/pages/p-projets';
-import './js/pages/p-publications';
+
+PHome.define();
+PProjets.define();
+PPublication.define();
+PTeaching.define();
+PTeam.define();
+
 
 /*** CSS ***/
 (function() {

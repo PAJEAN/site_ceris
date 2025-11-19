@@ -14,18 +14,17 @@ TEMPLATE.innerHTML = /* html */`
     <div id="${ID.main}"></div>
 `;
 
-class WcBoilerplate extends BaseCustomElements {
+class PBoilerplate extends BaseCustomElements {
     /** @type {HTMLDivElement} */
     #content;
 
     constructor() {
         super();
-        this.attachShadow({mode: 'open'}); /* ShadowRoot */
     }
 
     connectedCallback() {
-        this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
-        this.#content = this.shadowRoot.querySelector(`#${ID.main}`);
+        this.appendChild(TEMPLATE.content.cloneNode(true));
+        this.#content = this.querySelector(`#${ID.main}`);
     }
 
     disconnectedCallback() {}

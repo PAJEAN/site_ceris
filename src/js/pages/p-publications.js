@@ -1,7 +1,6 @@
 // @ts-check
 
-/** NS **/
-import { PAGES } from 'JS/pages/__ns__';
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Components **/
 import { WcNav } from 'JS/components/wc-nav';
 import { WcPagination } from 'JS/components/wc-pagination';
@@ -16,8 +15,6 @@ const TAG_IDS = {
     wc_pagination_container: 'wc-pagination-container',
     wc_publications_container: 'wc-publication-container',
 };
-
-const PAGE_NAME = PAGES.PUBLICATIONS;
 
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
@@ -46,7 +43,7 @@ TEMPLATE.innerHTML = /* html */`
     </div>
 `;
 
-class PPublication extends HTMLElement {    
+export class PPublication extends BaseCustomElements {
     constructor() {
         super();
         /** @type {HTMLDivElement} */
@@ -127,13 +124,4 @@ class PPublication extends HTMLElement {
     disconnectedCallback () {
         this.observer && this.observer.disconnect();
     }
-}
-
-try {
-    (function() {
-        window.customElements.define(PAGE_NAME, PPublication);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

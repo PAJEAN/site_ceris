@@ -108,7 +108,7 @@ export class WcTeaching extends BaseCustomElements {
             const modal = new bootstrap.Modal(modal_tag);
     
             this._content.querySelectorAll(WcTeachingCard.tag_name).forEach(card => {
-                card.addEventListener('click', () => {
+                card.addEventListener('click', () => {                    
                     let teaching_id = card.getAttribute(WcTeachingCard.teaching_id_attribute_name);
                     let teaching = TEACHING_MANAGER.get_by_id(teaching_id);
                     this._content.querySelector(`#${ID.modal_title}`).textContent = teaching.title;

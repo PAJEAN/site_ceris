@@ -1,7 +1,6 @@
 // @ts-check
 
-/** NS **/
-import { PAGES } from 'JS/pages/__ns__';
+import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /*** Components ***/
 import { WcNav } from 'JS/components/wc-nav';
 import { WcProjets } from 'JS/components/wc-projets';
@@ -18,8 +17,6 @@ const TAG_IDS = {
     modal_extend_abstract: 'modal-extend-abstract',
     modal_authors: 'modal-authors'
 };
-
-const PAGE_NAME = PAGES.PROJETS;
 
 const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
@@ -68,7 +65,7 @@ TEMPLATE.innerHTML = /* html */`
     </div>
 `;
 
-class PProjets extends HTMLElement {
+export class PProjets extends BaseCustomElements {
     constructor() {
         super();
         /** @type {HTMLDivElement} */
@@ -90,13 +87,4 @@ class PProjets extends HTMLElement {
     }
     
     disconnectedCallback () {}
-}
-
-try {
-    (function() {
-        window.customElements.define(PAGE_NAME, PProjets);
-    })();
-}
-catch (err) {
-    console.error(err);
 }

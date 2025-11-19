@@ -2,8 +2,6 @@
 
 /*** Librairies ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
-/* Components */
-import { WC } from "./__ns__";
 /** Store **/
 import { TEACHING_MANAGER } from "JS/store/modules/teaching/s-teaching";
 import { Teaching } from "JS/store/modules/teaching/teaching";

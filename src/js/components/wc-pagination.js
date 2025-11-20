@@ -195,3 +195,5 @@ export class WcPagination extends BaseCustomElements {
     
     disconnectedCallback () {}
 }
+
+WcPagination.define();

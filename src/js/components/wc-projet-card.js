@@ -1,6 +1,5 @@
 // @ts-check
 
-/*** Librairies ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { PROJECT_MANAGER } from "JS/store/modules/projects/s-projects";
@@ -128,3 +127,5 @@ export class WcProjectCard extends BaseCustomElements {
 
     disconnectedCallback() {}
 }
+
+WcProjectCard.define();

@@ -1,6 +1,5 @@
 // @ts-check
 
-/*** Librairies ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { TEACHING_MANAGER } from "JS/store/modules/teaching/s-teaching";
@@ -191,3 +190,5 @@ export class WcTeachingCard extends BaseCustomElements {
 
     disconnectedCallback() {}
 }
+
+WcTeachingCard.define();

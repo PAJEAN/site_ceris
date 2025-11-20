@@ -1,9 +1,5 @@
 // @ts-check
 
-/** NS **/
-import { NAV_INFO } from 'JS/pages/__ns__';
-
-
 const ID = {
     wc_main:   'wc-main',
     nav_brand: 'nav-brand',
@@ -71,41 +67,7 @@ export class WcFooter extends HTMLElement {
         this._content = document.createElement('div');
     }
 
-    nav_brand() {
-        /** @type {HTMLAnchorElement} */
-        let tag = this._content.querySelector(`#${ID.nav_brand}`);
-        if (!tag) return;
-        tag.href = NAV_INFO.navbar_brand.link;
-        tag.textContent = NAV_INFO.navbar_brand.content;
-    }
-
-    nav_items() {
-        let tag = this._content.querySelector(`#${ID.nav_items}`);
-        if (!tag) return;
-        tag.textContent = '';
-        for (let item of NAV_INFO.nav_items) {
-            let li = document.createElement('li');
-            li.classList.add('nav-item', 'fw-semibold');
-            let a = document.createElement('a');
-            a.classList.add('nav-link');
-            if (location.hash != '') {
-                a.href = item.link;
-            }
-            a.textContent = item.content;
-            a.addEventListener('click', () => {
-                console.log(item.link);
-                
-                this.setAttribute(WcFooter.location_attribute_name, item.link.substring(2));
-            });
-            li.appendChild(a);
-            tag.appendChild(li);
-        }
-    }
-
-    init() {
-        this.nav_brand();
-        this.nav_items();             
-    }
+    init() {}
     
     connectedCallback () {
         this.appendChild(TEMPLATE.content.cloneNode(true));

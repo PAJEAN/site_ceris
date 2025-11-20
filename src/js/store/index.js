@@ -1,3 +1,5 @@
+// @ts-check
+
 import { Store } from './store.js';
 /* Modules */
 import { module as publication } from 'JS/store/modules/hal/s-hal.js';

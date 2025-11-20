@@ -1,9 +1,31 @@
 // @ts-check
 
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
-/** NS **/
-import { NAV_INFO } from 'JS/pages/__ns__';
+/** Router **/
+import { ROUTES, ROUTES_INFO } from 'JS/lib/router/routes';
 
+
+/** Nav **/
+/**
+ * @typedef {Object} NavItem
+ * @property {string} content
+ * @property {string} link
+ */
+
+/**
+ * @typedef {Object} NavInfo
+ * @property {NavItem} navbar_brand
+ * @property {NavItem[]} nav_items
+ */
+const NAV_INFO = {
+    navbar_brand: {content: 'Ceris', link: '#'},
+    nav_items: [
+        {content: 'Projets', link: `#${ROUTES_INFO[ROUTES.PROJETS].route.path}`},
+        {content: 'Publications', link: `#${ROUTES_INFO[ROUTES.PUBLICATIONS].route.path}`},
+        {content: 'Équipe', link: `#${ROUTES_INFO[ROUTES.TEAM].route.path}`},
+        {content: 'Enseignements', link: `#${ROUTES_INFO[ROUTES.TEACHING].route.path}`},
+    ],
+}
 
 const ID = {
     wc_main:   'wc-main',
@@ -94,8 +116,6 @@ export class WcNav extends BaseCustomElements {
             }
             a.textContent = item.content;
             a.addEventListener('click', () => {
-                console.log(item.link);
-                
                 this.setAttribute(WcNav.location_attribute_name, item.link.substring(2));
             });
             li.appendChild(a);
@@ -119,3 +139,5 @@ export class WcNav extends BaseCustomElements {
     
     disconnectedCallback () {}
 }
+
+WcNav.define();

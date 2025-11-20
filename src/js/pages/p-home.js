@@ -1,16 +1,9 @@
 // @ts-check
 
-console.log("??");
-
-
 
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** NS **/
-import { PAGES } from 'JS/pages/__ns__';
-import { PProjets } from './p-projets';
-import { PPublication } from './p-publications';
-import { PTeam } from './p-team';
-import { PTeaching } from './p-teaching';
+import { ROUTES, ROUTES_INFO } from 'JS/lib/router/routes';
 /** Store **/
 import { HAL } from 'JS/store/modules/hal/s-hal';
 /** Component **/
@@ -22,19 +15,16 @@ import { WcTeaching } from 'JS/components/wc-teaching';
 import { WcStats } from 'JS/components/wc-stats';
 
 
-import { PAGES_INFO } from 'JS/utils/constants';
 
-console.log(PAGES_INFO);
-
-const TAG_IDS = {
+const ID = {
     main: 'p-main',
     wc_publications_container: 'wc-publication-container',
     wc_nav: 'wc-nav',
-    section_projets: PAGES_INFO[PProjets.tag_name].route.path.substring(1),
+    section_projets: ROUTES_INFO[ROUTES.PROJETS].route.path.substring(1),
     project_container: 'project-container',
-    section_publications: PAGES_INFO[PPublication.tag_name].route.path.substring(1),
-    section_team: PAGES_INFO[PTeam.tag_name].route.path.substring(1),
-    section_teaching: PAGES_INFO[PTeaching.tag_name].route.path.substring(1),
+    section_publications: ROUTES_INFO[ROUTES.PUBLICATIONS].route.path.substring(1),
+    section_team: ROUTES_INFO[ROUTES.TEAM].route.path.substring(1),
+    section_teaching: ROUTES_INFO[ROUTES.TEACHING].route.path.substring(1),
 };
 
 const TEMPLATE = document.createElement('template');
@@ -118,8 +108,8 @@ TEMPLATE.innerHTML = /* html */`
         }
     </style>
 
-    <div id="${TAG_IDS.main}">
-        <${WcNav.tag_name} id="${TAG_IDS.wc_nav}"></${WcNav.tag_name}>
+    <div id="${ID.main}">
+        <${WcNav.tag_name} id="${ID.wc_nav}"></${WcNav.tag_name}>
 
         <header class="padding-global">
             <!-- Hero Section -->
@@ -195,7 +185,7 @@ TEMPLATE.innerHTML = /* html */`
         </section>
 
         <!-- Projects Section -->
-        <section id="${TAG_IDS.section_projets}" class="pt-2 pb-5 section-color padding-global">
+        <section id="${ID.section_projets}" class="pt-2 pb-5 section-color padding-global">
             <div class="container-fluid py-5">
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">
@@ -205,12 +195,12 @@ TEMPLATE.innerHTML = /* html */`
                 </div>
 
                 <div>
-                    <div id="${TAG_IDS.project_container}" class="row g-4">
+                    <div id="${ID.project_container}" class="row g-4">
                         <${WcProjets.tag_name} ${WcProjets.limit_attribute_name}="6"></${WcProjets.tag_name}>
                     </div>
                     
                     <div class="text-center mt-5 pt-3">
-                        <a href="#${PAGES_INFO[PProjets.tag_name].route.path}" class="btn btn-gradient">
+                        <a href="#${ROUTES_INFO[ROUTES.PROJETS].route.path}" class="btn btn-gradient">
                             Voir tous les projets
                             <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
                         </a>
@@ -220,7 +210,7 @@ TEMPLATE.innerHTML = /* html */`
         </section>
 
         <!-- Publications Section -->
-        <section id="${TAG_IDS.section_publications}" class="pt-2 pb-5 padding-global">
+        <section id="${ID.section_publications}" class="pt-2 pb-5 padding-global">
             <div class="container-fluid py-5">
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">
@@ -229,12 +219,12 @@ TEMPLATE.innerHTML = /* html */`
                     </div>
                 </div>
                 
-                <div id="${TAG_IDS.wc_publications_container}">
+                <div id="${ID.wc_publications_container}">
                     <${WcPublications.tag_name} data-rows="5" class="section-color"></${WcPublications.tag_name}>
                 </div>
                 
                 <div class="text-center mt-5 pt-3">
-                    <a href="#${PAGES_INFO[PPublication.tag_name].route.path}" class="btn btn-gradient">
+                    <a href="#${ROUTES_INFO[ROUTES.PUBLICATIONS].route.path}" class="btn btn-gradient">
                         Voir toutes les publications
                         <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
                     </a>
@@ -243,7 +233,7 @@ TEMPLATE.innerHTML = /* html */`
         </section>
 
         <!-- Team Section -->
-        <section id="${TAG_IDS.section_team}" class="pt-2 pb-5 padding-global section-color">
+        <section id="${ID.section_team}" class="pt-2 pb-5 padding-global section-color">
             <div class="container pt-5">
 
                 <div class="row mb-5">
@@ -260,7 +250,7 @@ TEMPLATE.innerHTML = /* html */`
             </div>
 
             <div class="text-center mt-5 pt-3">
-                <a href="#${PAGES_INFO[PTeam].route.path}" class="btn btn-gradient">
+                <a href="#${ROUTES_INFO[ROUTES.TEAM].route.path}" class="btn btn-gradient">
                     Découvrir toute l'équipe
                     <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
                 </a>
@@ -268,7 +258,7 @@ TEMPLATE.innerHTML = /* html */`
         </section>
 
         <!-- Teaching Programs Section -->
-        <section id="${TAG_IDS.section_teaching}" class="py-5">
+        <section id="${ID.section_teaching}" class="py-5">
             <div class="container py-5">
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">
@@ -281,7 +271,7 @@ TEMPLATE.innerHTML = /* html */`
             </div>
 
             <div class="text-center pt-3">
-                <a href="#${PAGES_INFO[PTeaching].route.path}" class="btn btn-gradient">
+                <a href="#${ROUTES_INFO[ROUTES.TEACHING].route.path}" class="btn btn-gradient">
                     Découvrir toutes les formations
                     <i data-lucide="arrow-right" class="ms-2" style="width: 16px; height: 16px;"></i>
                 </a>
@@ -327,7 +317,7 @@ export class PHome extends BaseCustomElements {
     }
 
     _clear_publications() {
-        let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
+        let tag = this._content.querySelector(`#${ID.wc_publications_container}`);
         tag.textContent = '';
     }
 
@@ -347,13 +337,13 @@ export class PHome extends BaseCustomElements {
     }
 
     _observing() {
-        let wc_nav = this._content.querySelector(`#${TAG_IDS.wc_nav}`);
+        let wc_nav = this._content.querySelector(`#${ID.wc_nav}`);
         this.observer.observe(wc_nav, { attributes: true });
     }
 
     _publications() {
         this._clear_publications();
-        let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
+        let tag = this._content.querySelector(`#${ID.wc_publications_container}`);
         let wc_publications = document.createElement(`${WcPublications.tag_name}`);
         wc_publications.setAttribute(WcPublications.rows_attribute_name, (5).toString());
         tag.appendChild(wc_publications);
@@ -370,7 +360,7 @@ export class PHome extends BaseCustomElements {
     connectedCallback () {
         this.appendChild(TEMPLATE.content.cloneNode(true));
         /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${TAG_IDS.main}`);
+        this._content = this.querySelector(`#${ID.main}`);
 
         this.observer = new MutationObserver(this._observer.bind(this));
 
@@ -381,4 +371,3 @@ export class PHome extends BaseCustomElements {
         this.observer && this.observer.disconnect();
     }
 }
-

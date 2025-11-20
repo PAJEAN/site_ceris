@@ -1,10 +1,10 @@
 // @ts-check
 
-/*** Librairies ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { PROJECT_MANAGER } from 'JS/store/modules/projects/s-projects';
 import { WcProjectCard } from 'JS/components/wc-projet-card';
+
 
 const ID = {
     main: 'p-main',
@@ -172,3 +172,5 @@ export class WcProjets extends BaseCustomElements {
     
     disconnectedCallback () {}
 }
+
+WcProjets.define();

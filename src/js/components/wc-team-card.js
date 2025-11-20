@@ -1,6 +1,5 @@
 // @ts-check
 
-/*** Librairies ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { TEAM_MANAGER } from "JS/store/modules/team/s-team";
@@ -164,3 +163,5 @@ export class WcTeamCard extends BaseCustomElements {
 
     disconnectedCallback() {}
 }
+
+WcTeamCard.define();

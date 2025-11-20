@@ -9,7 +9,7 @@ import { WcPublications } from 'JS/components/wc-publications';
 import { HAL } from 'JS/store/modules/hal/s-hal';
 
 
-const TAG_IDS = {
+const ID = {
     main: 'p-main',
     wc_pagination: 'wc-pagination',
     wc_pagination_container: 'wc-pagination-container',
@@ -22,7 +22,7 @@ TEMPLATE.innerHTML = /* html */`
     <style>
     </style>
 
-    <div id="${TAG_IDS.main}">
+    <div id="${ID.main}">
         <${WcNav.tag_name}></${WcNav.tag_name}>
         
         <section class="pt-2 pb-5 padding-global">
@@ -34,10 +34,10 @@ TEMPLATE.innerHTML = /* html */`
                     </div>
                 </div>
                 
-                <div id="${TAG_IDS.wc_publications_container}"></div>
+                <div id="${ID.wc_publications_container}"></div>
             </div>
-            <div id="${TAG_IDS.wc_pagination_container}">
-                <${WcPagination.tag_name} id="${TAG_IDS.wc_pagination}" ${WcPagination.rows_attribute_name}="5"></${WcPagination.tag_name}>
+            <div id="${ID.wc_pagination_container}">
+                <${WcPagination.tag_name} id="${ID.wc_pagination}" ${WcPagination.rows_attribute_name}="5"></${WcPagination.tag_name}>
             </div>
         </section>
     </div>
@@ -55,12 +55,12 @@ export class PPublication extends BaseCustomElements {
     }
 
     _clear_pagination() {
-        let tag = this._content.querySelector(`#${TAG_IDS.wc_pagination_container}`);
+        let tag = this._content.querySelector(`#${ID.wc_pagination_container}`);
         tag.textContent = '';
     }
 
     _clear_publications() {
-        let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
+        let tag = this._content.querySelector(`#${ID.wc_publications_container}`);
         tag.textContent = '';
     }
     
@@ -79,23 +79,23 @@ export class PPublication extends BaseCustomElements {
     }
 
     _observing() {
-        let wc_pagination = this._content.querySelector(`#${TAG_IDS.wc_pagination}`);
+        let wc_pagination = this._content.querySelector(`#${ID.wc_pagination}`);
         this.observer.disconnect();
         this.observer.observe(wc_pagination, { attributes: true });
     }
 
     _pagination() {
         this._clear_pagination();
-        let tag = this._content.querySelector(`#${TAG_IDS.wc_pagination_container}`);
+        let tag = this._content.querySelector(`#${ID.wc_pagination_container}`);
         let wc_pagination = document.createElement(`${WcPagination.tag_name}`);
-        wc_pagination.id = TAG_IDS.wc_pagination;
+        wc_pagination.id = ID.wc_pagination;
         wc_pagination.setAttribute(WcPublications.rows_attribute_name, this._rows.toString());
         tag.appendChild(wc_pagination);
     }
 
     _publications() {
         this._clear_publications();
-        let tag = this._content.querySelector(`#${TAG_IDS.wc_publications_container}`);
+        let tag = this._content.querySelector(`#${ID.wc_publications_container}`);
         let wc_publications = document.createElement(`${WcPublications.tag_name}`);
         wc_publications.setAttribute(WcPublications.rows_attribute_name, this._rows.toString());
         tag.appendChild(wc_publications);
@@ -111,7 +111,7 @@ export class PPublication extends BaseCustomElements {
         this.appendChild(TEMPLATE.content.cloneNode(true));
 
         /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${TAG_IDS.main}`) ?? this._content;
+        this._content = this.querySelector(`#${ID.main}`) ?? this._content;
 
         this.observer = new MutationObserver(this._observer.bind(this));
 

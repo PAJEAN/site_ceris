@@ -5,7 +5,7 @@ import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 import { WcNav } from 'JS/components/wc-nav';
 import { WcProjets } from 'JS/components/wc-projets';
 
-const TAG_IDS = {
+const ID = {
     main: 'p-main',
     project_container: 'project-container',
     modal: 'project-modal',
@@ -44,7 +44,7 @@ TEMPLATE.innerHTML = /* html */`
         }
     </style>
 
-    <div id="${TAG_IDS.main}">
+    <div id="${ID.main}">
         <${WcNav.tag_name}></${WcNav.tag_name}>
         
         <section class="pt-2 pb-5 padding-global">
@@ -56,7 +56,7 @@ TEMPLATE.innerHTML = /* html */`
                     </div>
                 </div>
 
-                <div id="${TAG_IDS.project_container}" class="row g-4">
+                <div id="${ID.project_container}" class="row g-4">
                     <${WcProjets.tag_name}></${WcProjets.tag_name}>
                 </div>
 
@@ -81,7 +81,7 @@ export class PProjets extends BaseCustomElements {
         this.appendChild(TEMPLATE.content.cloneNode(true));
 
         /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${TAG_IDS.main}`) ?? this._content;
+        this._content = this.querySelector(`#${ID.main}`) ?? this._content;
 
         this.init();        
     }

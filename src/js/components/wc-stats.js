@@ -1,6 +1,5 @@
 // @ts-check
 
-/*** Librairies ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { store } from 'JS/store/index';
@@ -97,3 +96,5 @@ export class WcStats extends BaseCustomElements {
         this.unsubscribe();
     }
 }
+
+WcStats.define();

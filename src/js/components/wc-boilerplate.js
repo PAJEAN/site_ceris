@@ -14,7 +14,7 @@ TEMPLATE.innerHTML = /* html */`
     <div id="${ID.main}"></div>
 `;
 
-class WcBoilerplate extends BaseCustomElements {
+export class WcBoilerplate extends BaseCustomElements {
     /** @type {HTMLDivElement} */
     #content;
 
@@ -33,3 +33,5 @@ class WcBoilerplate extends BaseCustomElements {
     static get observedAttributes() { return []; }
     attributeChangedCallback(attrName, oldVal, newVal) {} /* Called for every change to attributes listed in the observedAttributes array */
 }
+
+WcBoilerplate.define();

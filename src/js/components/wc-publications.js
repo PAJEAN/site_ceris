@@ -1,6 +1,5 @@
 // @ts-check
 
-/*** Librairies ***/
 import { BaseCustomElements } from 'JS/lib/base-custom-elements';
 /** Store **/
 import { HAL } from 'JS/store/modules/hal/s-hal';
@@ -160,3 +159,5 @@ export class WcPublications extends BaseCustomElements {
     
     disconnectedCallback () {}
 }
+
+WcPublications.define();

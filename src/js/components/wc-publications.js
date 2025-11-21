@@ -17,29 +17,39 @@ TEMPLATE.innerHTML = /* html */`
         .publication-item {
             border-left: 3px solid var(--primary-text);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .publication-item:hover {
             border-left-color: var(--vermillion-light);
-            transform: translateY(-5px);
+            transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-body-publication {
+            padding-bottom: 1rem;
         }
     </style>
 
     <div id="${ID.wc_main}" class="row g-4">
         <div class="col-12">
-            <div class="publication-item base-radius-16 base-shadow p-4">
+            <div class="publication-item base-radius-16 base-shadow p-4" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <div class="d-flex justify-content-between align-items-start">
                     <div class="flex-grow-1">
                         <h5 class="fw-semibold mb-2">Deep Learning Approaches for Real-Time Object Detection in Autonomous Systems</h5>
-                        <p class="text-muted small mb-3">M. Durand, C. Dubois, J. Moreau</p>
+                        <p class="text-muted small mb-2">M. Durand, C. Dubois, J. Moreau</p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card-body card-body-publication">
+                                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                            </div>
+                        </div>
                         <div class="d-flex gap-2 mb-3 flex-wrap">
                             <span class="badge badge-config">Intelligence Artificielle</span>
                             <span class="badge badge-config">Vision par ordinateur</span>
                         </div>
                         <p class="small text-muted mb-0">IEEE Transactions on Neural Networks and Learning Systems, 2024</p>
                     </div>
-                    <a href="#" class="btn btn-outline-secondary btn-sm ms-3">
+                    <a href="#" class="btn btn-outline-secondary btn-sm ms-3" title="Visionner l'article sur HAL">
                         <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
                     </a>
                 </div>
@@ -106,16 +116,22 @@ export class WcPublications extends BaseCustomElements {
      * @param {Publication} publication 
      */
     _html(publication) {
+        let collapse_id = `uri-${publication.uri}`;
         let div_content = /* html */`
-        <div class="publication-item base-radius-16 base-shadow p-4">
+        <div class="publication-item base-radius-16 base-shadow p-4" data-bs-toggle="collapse" data-bs-target="#${collapse_id}" aria-expanded="false" aria-controls="${collapse_id}">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="flex-grow-1">
                     <h5 class="fw-semibold mb-2">${publication.first_title}</h5>
-                    <p class="text-muted small mb-3">${publication.authors.join(', ')}</p>
+                    <p class="text-muted small mb-2">${publication.authors.join(', ')}</p>
+                    <div class="collapse" id="${collapse_id}">
+                        <div class="card-body card-body-publication">
+                            ${publication.abstracts ? publication.abstracts : ''}
+                        </div>
+                    </div>
                     ${this._keywords(publication.keywords)}
                     ${this._publish_in(publication)}
                 </div>
-                <a href="${publication.uri}" target="_blank" class="btn btn-outline-secondary btn-sm ms-3">
+                <a href="${publication.uri}" target="_blank" class="btn btn-outline-secondary btn-sm ms-3" title="Visionner l'article sur HAL">
                     <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
                 </a>
             </div>

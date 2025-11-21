@@ -29,17 +29,20 @@ export const module = {
 
                 if (DEBUG) {
                     return setTimeout(() => {
+                        let url = new URL(payload);
+                        let start = parseInt(url.searchParams.get('start'));
+                        let rows = parseInt(url.searchParams.get('rows'));
                         let resultat = DATA_TEST;
                         // @ts-ignore
                         let publications = resultat.response.docs.map(el => new Publication(el));
-                        publications = publications.slice(payload.start, payload.start + payload.rows);
+                        publications = publications.slice(start, start + rows);
                         context.commit(`${NS}_UPDATE_PUBLICATIONS`, publications);
                         context.commit(`${NS}_UPDATE_TOTAL_PUBLICATIONS`, resultat.response.numFound);
                         resolve();
                     }, 250);
                 }
-
-                fetch(`https://api.archives-ouvertes.fr/search/?q=structId_i:1100796&&fl=title_s,authFullName_s,keyword_s,abstract_s,producedDateY_i,publisher_s,conferenceTitle_s,degree_s,book_s,uri_s,journalTitle_s&sort=producedDateY_i%20desc,docid%20desc&rows=${payload.rows}&start=${payload.start}`, {
+                
+                fetch(payload, {
                     method: 'GET'
                 })
                 .then(response => {
@@ -74,6 +77,7 @@ export const module = {
 }
 
 class Hal {
+
     constructor() {}
 
     /**
@@ -90,8 +94,27 @@ class Hal {
      * * @param {number} start
      * @returns Promise
      */
-    async fetch(rows, start) {        
-        return store.dispatch(keys.a_fetch_publications, {rows, start});
+    async fetch(rows, start, search = undefined) {        
+        return store.dispatch(keys.a_fetch_publications, this.#query(rows, start, search));
+    }
+
+    /**
+     * @param {number} rows 
+     * @param {number} start 
+     * @param {string} search 
+     * @returns {string}
+     */
+    #query(rows, start, search = undefined) {
+        let query = `q=structId_i:1100796`;
+        if (search) {
+            if (!Number.isNaN(parseInt(search))) {
+                query += ` AND (producedDateY_i:${search})`;
+            } else {
+                query += ` AND (title_t:*${search}* OR authFullName_t:*${search}* OR keyword_t:*${search}* OR publisher_t:*${search}* OR conferenceTitle_t:*${search}* OR journalTitle_t:*${search})`;
+            }
+        }
+        let url = `https://api.archives-ouvertes.fr/search/?${query}&fl=title_s,authFullName_s,keyword_s,abstract_s,producedDateY_i,publisher_s,conferenceTitle_s,degree_s,book_s,uri_s,journalTitle_s&sort=producedDateY_i%20desc,docid%20desc&rows=${rows}&start=${start}`;
+        return url;
     }
 }
 

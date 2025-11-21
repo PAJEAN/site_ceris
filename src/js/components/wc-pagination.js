@@ -174,6 +174,7 @@ export class WcPagination extends BaseCustomElements {
     }
 
     init() {
+        this._nb_pages = Math.ceil(HAL.total_publications / this._rows);     
         this.clear();
         this._render();
     }
@@ -181,6 +182,8 @@ export class WcPagination extends BaseCustomElements {
     get current_page() { return this._current_pages; }
     
     connectedCallback () {
+        console.log("CONNECTED");
+        
         this.appendChild(TEMPLATE.content.cloneNode(true));
 
         /** @type {HTMLDivElement} */
@@ -188,12 +191,25 @@ export class WcPagination extends BaseCustomElements {
 
         this._rows = this.hasAttribute(WcPagination.rows_attribute_name) ? parseInt(this.getAttribute(WcPagination.rows_attribute_name) ?? this._rows.toString()): this._rows;
 
-        this._nb_pages = Math.ceil(HAL.total_publications / this._rows);        
-
         this.init();
     }
     
     disconnectedCallback () {}
+
+    static get observedAttributes() {
+        return [
+            WcPagination.current_page_attribute_name,
+            WcPagination.rows_attribute_name,
+        ]; 
+    }
+
+    attributeChangedCallback(attrName, oldVal, newVal) {
+        if (attrName === WcPagination.current_page_attribute_name)
+            this._current_pages = parseInt(newVal);
+        else if (attrName === WcPagination.rows_attribute_name)
+            this._rows = parseInt(newVal);
+        this.init();
+    } /* Called for every change to attributes listed in the observedAttributes array */
 }
 
 WcPagination.define();

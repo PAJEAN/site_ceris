@@ -91,21 +91,6 @@ TEMPLATE.innerHTML = /* html */`
                 row-gap: 2rem;
             }
         }
-
-        .btn-gradient {
-            background-color: var(--vermillion-light);
-            border-radius: 100vw;
-            color: white;
-            padding: 0.75rem 2rem;
-            font-weight: 500;
-            transition: all 0.25s ease;
-        }
-
-        .btn-gradient:hover {
-            background-color: var(--vermillion-light);
-            color: white;
-            transform: translateY(-3px);
-        }
     </style>
 
     <div id="${ID.main}">

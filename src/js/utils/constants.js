@@ -1,4 +1,4 @@
-let debug = true;
+let debug = false;
 export const DEBUG = process.env.NODE_ENV == 'production' ? false: debug;
 
 export let REGISTERED_PAGES = [];

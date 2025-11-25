@@ -128,4 +128,4 @@ export class WcProjectCard extends BaseCustomElements {
     disconnectedCallback() {}
 }
 
-WcProjectCard.define();
+WcProjectCard.define(import.meta.url, true);

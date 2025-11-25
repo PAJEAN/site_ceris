@@ -1,11 +1,28 @@
 export const TEAM_DATA = [
     {
-        id: '#test0',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;h=400&amp;fit=crop',
-        first_name: 'PA',
+        id: 'jmontmain',
+        image: 'assets/team/jacky.png',
+        first_name: 'Jacky',
         last_name: 'Montmain',
         job_title: 'Directeur de recherche',
-        keywords: ['Intelligence artificielle', 'Apprentissage automatique'],
+        keywords: ['Incertitude', 'Prise de decision'],
+        links: [{
+            name: 'linkedin',
+            url: '#'
+        },
+        {
+            name: 'mail',
+            url: '#'
+        }],
+        priority: 0
+    },
+    {
+        id: 'gdray',
+        image: 'assets/team/gerard.png',
+        first_name: 'Gérard',
+        last_name: 'Dray',
+        job_title: "Co-directeur d'Euromov DHM",
+        keywords: ['Fouille de données'],
         links: [{
             name: 'linkedin',
             url: '#'
@@ -13,29 +30,33 @@ export const TEAM_DATA = [
         priority: 1
     },
     {
-        id: '#test1',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;h=400&amp;fit=crop',
-        first_name: 'Jacky',
-        last_name: 'Montmain',
-        job_title: 'Directeur de recherche',
-        keywords: ['Intelligence artificielle', 'Apprentissage automatique'],
+        id: 'sranwez',
+        image: 'assets/team/sylvie.png',
+        first_name: 'Sylvie',
+        last_name: 'Ranwez',
+        job_title: 'Professeure',
+        keywords: ['Ingénierie des connaissances'],
         links: [{
             name: 'linkedin',
             url: '#'
+        },
+        {
+            name: 'researchgate',
+            url: '#'
         }],
-        priority: 0
+        priority: 2
     },
     {
-        id: '#test2',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;h=400&amp;fit=crop',
-        first_name: 'Jacky',
-        last_name: 'Aontmain',
-        job_title: 'Directeur de recherche',
-        keywords: ['Intelligence artificielle', 'Apprentissage automatique'],
+        id: 'bmagnier',
+        image: 'assets/team/baptiste.png',
+        first_name: 'Baptiste',
+        last_name: 'Magnier',
+        job_title: 'Enseignant-Chercheur',
+        keywords: ['Intelligence artificielle', 'Vision par ordinateur'],
         links: [{
             name: 'linkedin',
             url: '#'
         }],
-        priority: 0
+        priority: 3
     }
 ];

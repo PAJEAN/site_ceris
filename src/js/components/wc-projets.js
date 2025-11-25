@@ -173,4 +173,4 @@ export class WcProjets extends BaseCustomElements {
     disconnectedCallback () {}
 }
 
-WcProjets.define();
+WcProjets.define(import.meta.url, true);

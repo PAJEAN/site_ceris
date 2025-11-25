@@ -97,4 +97,4 @@ export class WcStats extends BaseCustomElements {
     }
 }
 
-WcStats.define();
+WcStats.define(import.meta.url, true);

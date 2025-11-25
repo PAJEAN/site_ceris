@@ -3,7 +3,7 @@
 import { Router } from 'JS/lib/router/router';
 import { ROUTES, ROUTES_INFO } from 'JS/lib/router/routes';
 
-Router.define();
+Router.define('app-router');
 Router.init(ROUTES_INFO);
 
 /*** ROUTES ***/

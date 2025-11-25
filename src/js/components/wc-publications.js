@@ -176,4 +176,4 @@ export class WcPublications extends BaseCustomElements {
     disconnectedCallback () {}
 }
 
-WcPublications.define();
+WcPublications.define(import.meta.url, true);

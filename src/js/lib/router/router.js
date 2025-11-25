@@ -56,7 +56,7 @@ export class Router extends BaseCustomElements {
 
     _initRoutes() {
         /** @type {Router} */
-        const ROUTER = document.querySelector(Router.tag_name);        
+        const ROUTER = document.querySelector(Router.tag_name);
         for (let page_name in this.#pages) {
             let route = document.createElement(keys.ROUTE);
             let page_info = this.#pages[page_name];
@@ -91,7 +91,7 @@ export class Router extends BaseCustomElements {
 
     navigate(hash) {
         let navigate = false;
-        let matched_route = this._match(hash);
+        let matched_route = this._match(hash);        
         if (matched_route) {
             if (matched_route.roles.length > 0) {
                 if (store.state.is_auth && store.state.is_auth === true && store.state.roles && matched_route.roles.some((el) => store.state.roles.includes(el))) { // Interception between state.roles and matched_roles.

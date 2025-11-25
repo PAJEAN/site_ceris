@@ -172,4 +172,4 @@ export class WcTeaching extends BaseCustomElements {
     disconnectedCallback () {}
 }
 
-WcTeaching.define();
+WcTeaching.define(import.meta.url, true);

@@ -1,11 +1,11 @@
 // @ts-check
 
 export const ROUTES = {
-    HOME: 'p-home',
-    PUBLICATIONS: 'p-publications',
-    PROJETS: 'p-projets',
-    TEAM: 'p-team',
-    TEACHING: 'p-teaching',
+    HOME: 'wc-phome',
+    PUBLICATIONS: 'wc-ppublication',
+    PROJETS: 'wc-pprojets',
+    TEAM: 'wc-pteam',
+    TEACHING: 'wc-pteaching',
 }
 
 export const ROUTES_INFO = {

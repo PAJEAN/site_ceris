@@ -1,13 +1,17 @@
 {
-  "compilerOptions": {
-    "target": "ES6",
-    "baseUrl": ".",
-    "paths": {
-        "JS/*": ["src/js/*"],
-        "CSS/*": ["src/css/*"]
-    }
-  },
-  "include": [
-    "src"
-  ]
+    "compilerOptions": {
+        "target": "ES6", // Specifies which default library (lib.d.ts) to use.
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "checkJs": true, // Enable type checking on JavaScript files.
+        "baseUrl": ".",
+        "paths": {
+            "JS/*": ["src/js/*"],
+            "CSS/*": ["src/css/*"]
+        }
+    },
+    "include": [
+        "src/**/*",
+        "css.d.ts"
+    ]
 }

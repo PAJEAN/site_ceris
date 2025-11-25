@@ -212,4 +212,4 @@ export class WcPagination extends BaseCustomElements {
     } /* Called for every change to attributes listed in the observedAttributes array */
 }
 
-WcPagination.define();
+WcPagination.define(import.meta.url, true);

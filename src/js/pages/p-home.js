@@ -15,7 +15,6 @@ import { WcTeaching } from 'JS/components/wc-teaching';
 import { WcStats } from 'JS/components/wc-stats';
 
 
-
 const ID = {
     main: 'p-main',
     wc_publications_container: 'wc-publication-container',
@@ -345,7 +344,7 @@ export class PHome extends BaseCustomElements {
     connectedCallback () {
         this.appendChild(TEMPLATE.content.cloneNode(true));
         /** @type {HTMLDivElement} */
-        this._content = this.querySelector(`#${ID.main}`);
+        this._content = this.querySelector(`#${ID.main}`);        
 
         this.observer = new MutationObserver(this._observer.bind(this));
 

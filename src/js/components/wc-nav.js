@@ -140,4 +140,4 @@ export class WcNav extends BaseCustomElements {
     disconnectedCallback () {}
 }
 
-WcNav.define();
+WcNav.define(import.meta.url, true);

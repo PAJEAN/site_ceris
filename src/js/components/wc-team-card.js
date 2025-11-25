@@ -49,7 +49,7 @@ TEMPLATE.innerHTML = /* html */`
             transition: all 0.3s ease;
         }
         .team-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
     </style>
@@ -118,7 +118,7 @@ export class WcTeamCard extends BaseCustomElements {
             switch (link.name.toLowerCase()) {
                 case 'mail':
                     a.href = `mailto:${link.url}`;
-                    icon.src = link.url;
+                    icon.src = 'https://upload.wikimedia.org/wikipedia/commons/e/ec/Circle-icons-mail.svg';
                     break;
                 case 'linkedin':
                     a.href = link.url;
@@ -164,4 +164,4 @@ export class WcTeamCard extends BaseCustomElements {
     disconnectedCallback() {}
 }
 
-WcTeamCard.define();
+WcTeamCard.define(import.meta.url, true);

@@ -69,4 +69,4 @@ export class WcTeam extends BaseCustomElements {
     disconnectedCallback () {}
 }
 
-WcTeam.define();
+WcTeam.define(import.meta.url, true);

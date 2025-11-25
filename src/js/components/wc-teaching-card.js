@@ -191,4 +191,4 @@ export class WcTeachingCard extends BaseCustomElements {
     disconnectedCallback() {}
 }
 
-WcTeachingCard.define();
+WcTeachingCard.define(import.meta.url, true);

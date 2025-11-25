@@ -1,6 +1,6 @@
 // @ts-check
 
-import { BaseCustomElements } from "JS/lib/core/base-custom-elements";
+import { BaseCustomElements } from "JS/lib/base-custom-elements";
 
 const ID = {
     main: 'div-main'

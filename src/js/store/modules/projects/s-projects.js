@@ -67,6 +67,19 @@ class ProjectManager {
 
     order_by_start_date(desc = true) {
         return this.projects.sort((a, b) => {
+            // Primary: start_date.
+            let p = desc ? b.start_date - a.start_date: a.start_date - b.start_date;
+            if (p !== 0) return p;
+            // Secondary: end_date.
+            let la = a.end_date;
+            let lb = b.end_date;
+            if (la < lb) return desc ? 1: -1;
+            if (la > lb) return desc ? -1: 1;
+            return 0;
+        });
+
+
+        return this.projects.sort((a, b) => {
             return desc ? b.start_date - a.start_date: a.start_date - b.start_date;
         })
     }

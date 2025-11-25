@@ -54,13 +54,15 @@ TEMPLATE.innerHTML = /* html */`
         }
     </style>
 
-    <div id="${ID.main}">
+    <div id="${ID.main}" class="h-100">
         <div class="card base-card h-100 border-0 shadow-sm team-card">
-            <div class="card-body">
-                <img id="${ID.image}" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
-                <h5 id="${ID.name}" class="fw-semibold mb-1">Dr. Marc Durand</h5>
-                <p id="${ID.job}" class="text-primary small mb-2">Directeur de recherche</p>
-                <p id="${ID.keywords}" class="small text-muted mb-3">Intelligence artificielle, Apprentissage automatique</p>
+            <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                    <img id="${ID.image}" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;h=400&amp;fit=crop" alt="Chercheur" class="team-img mb-3">
+                    <h5 id="${ID.name}" class="fw-semibold mb-1">Dr. Marc Durand</h5>
+                    <p id="${ID.job}" class="text-primary small mb-2">Directeur de recherche</p>
+                    <p id="${ID.keywords}" class="small text-muted mb-3">Intelligence artificielle, Apprentissage automatique</p>
+                </div>
                 <div id="${ID.links}" class="d-flex gap-2">
                     <a href="#" class="social-a" title="Mail">
                         <img class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/ResearchGate_icon_SVG.svg"/>

@@ -34,7 +34,7 @@ TEMPLATE.innerHTML = /* html */`
         }
     </style>
 
-    <div id="${ID.wc_main}">
+    <div id="${ID.wc_main}" class="h-100">
         <div class="card base-card h-100 border-0 shadow-sm project-card">
             <img id="${ID.image}" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop" alt="Projet" class="project-img">
             <div class="card-body d-flex flex-column justify-content-between gap-2">

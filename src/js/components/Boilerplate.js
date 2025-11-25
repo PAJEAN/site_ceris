@@ -1,6 +1,6 @@
 // @ts-check
 
-import { BaseCustomElements } from "JS/lib/base-custom-elements";
+import { BaseCustomElements } from "JS/lib/core/base-custom-elements";
 
 const ID = {
     main: 'div-main'
@@ -14,17 +14,18 @@ TEMPLATE.innerHTML = /* html */`
     <div id="${ID.main}"></div>
 `;
 
-class PBoilerplate extends BaseCustomElements {
+export class Boilerplate extends BaseCustomElements {
     /** @type {HTMLDivElement} */
     #content;
 
     constructor() {
         super();
+        this.attachShadow({mode: 'open'}); /* ShadowRoot */
     }
 
     connectedCallback() {
-        this.appendChild(TEMPLATE.content.cloneNode(true));
-        this.#content = this.querySelector(`#${ID.main}`);
+        this.shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
+        this.#content = this.shadowRoot.querySelector(`#${ID.main}`);
     }
 
     disconnectedCallback() {}
@@ -32,3 +33,5 @@ class PBoilerplate extends BaseCustomElements {
     static get observedAttributes() { return []; }
     attributeChangedCallback(attrName, oldVal, newVal) {} /* Called for every change to attributes listed in the observedAttributes array */
 }
+
+Boilerplate.define(import.meta.url, true);

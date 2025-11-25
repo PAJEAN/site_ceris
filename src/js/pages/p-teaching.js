@@ -20,7 +20,7 @@ TEMPLATE.innerHTML = /* html */`
         <${WcNav.tag_name}></${WcNav.tag_name}>
 
         <section class="pt-2 pb-5 padding-global">
-            <div class="container pt-5">
+            <div class="container-fluid pt-5">
 
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">

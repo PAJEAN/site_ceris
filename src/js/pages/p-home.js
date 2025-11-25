@@ -218,7 +218,7 @@ TEMPLATE.innerHTML = /* html */`
 
         <!-- Team Section -->
         <section id="${ID.section_team}" class="pt-2 pb-5 padding-global section-color">
-            <div class="container pt-5">
+            <div class="container-fluid pt-5">
 
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">
@@ -229,7 +229,7 @@ TEMPLATE.innerHTML = /* html */`
 
                 <!-- Researchers -->
                 <div class="mb-5">
-                    <${WcTeam.tag_name} ${WcTeam.limit_attribute_name}="6"></${WcTeam.tag_name}>
+                    <${WcTeam.tag_name} ${WcTeam.limit_attribute_name}="true"></${WcTeam.tag_name}>
                 </div>
             </div>
 
@@ -242,8 +242,8 @@ TEMPLATE.innerHTML = /* html */`
         </section>
 
         <!-- Teaching Programs Section -->
-        <section id="${ID.section_teaching}" class="py-5">
-            <div class="container py-5">
+        <section id="${ID.section_teaching}" class="padding-global py-5">
+            <div class="container-fluid py-5">
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">
                         <h2 class="display-5 section-title mb-3">Filières d'enseignement</h2>
@@ -251,7 +251,7 @@ TEMPLATE.innerHTML = /* html */`
                     </div>
                 </div>
                 
-                <${WcTeaching.tag_name} ${WcTeaching.limit_attribute_name}="1"></${WcTeaching.tag_name}>
+                <${WcTeaching.tag_name} ${WcTeaching.limit_attribute_name}="4"></${WcTeaching.tag_name}>
             </div>
 
             <div class="text-center pt-3">

@@ -23,7 +23,11 @@ const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */`
 
     <style>
-        
+        @media (max-width: 768px) {
+            .col-space {
+                margin-bottom: 1rem;
+            }
+        }
     </style>
 
     <div id="${ID.main}">
@@ -38,17 +42,15 @@ TEMPLATE.innerHTML = /* html */`
                     </div>
                 </div>
                 
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <div>
+                <div class="row align-items-center mb-3">
+                    <div class="col col-space">
                         <span id="${ID.wc_publication_nb_publications}" class="fw-semibold">0</span>
                         publications trouvées
                     </div>
-                    <div class="d-flex align-items-center gap-3">
-                        <div>
-                            <input type="text" class="form-control" id="${ID.wc_publication_search_input}" placeholder="Entrer un mot-clé">
-                        </div>
-                        <div>
-                            <button id="${ID.wc_publication_search_btn}" class="btn btn-gradient">Rechercher</button>
+                    <div class="col-auto">
+                        <div class="input-group">
+                                <input type="text" class="form-control" id="${ID.wc_publication_search_input}" placeholder="Entrer un mot-clé">
+                                <button id="${ID.wc_publication_search_btn}" class="btn btn-gradient" type="button">Rechercher</button>
                         </div>
                     </div>
                 </div>

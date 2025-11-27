@@ -38,6 +38,7 @@ TEMPLATE.innerHTML = /* html */`
                 margin-bottom: 1rem;
             }
         }
+        
         .teaching-modal-level-badge {
             font-size: 0.75rem;
             background-color: var(--vermillion-light);
